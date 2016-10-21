@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>http://www.ukio.info/</loc>
+    <lastmod>2016-12-10T00:01:00+12:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.ukio.info/blog/mendeley-to-tex/</loc>
+    <lastmod>2016-12-10T00:01:00+12:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.ukio.info/blog/matlab-to-latex/</loc>
+    <lastmod>2016-12-08T14:40:31+12:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.ukio.info/publications/ivcnz2016/</loc>
+    <lastmod>2016-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.ukio.info/publications/fde-symmetry-paradox/</loc>
+    <lastmod>2016-10-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.ukio.info/blog/migrate-from-jekyll/</loc>
+    <lastmod>2015-10-10T13:07:31+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.ukio.info/blog/linked-post/</loc>
+    <lastmod>2015-10-02T21:49:20+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.ukio.info/blog/go-is-for-lovers/</loc>
+    <lastmod>2015-09-17T13:47:08+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.ukio.info/blog/hugo-is-for-lovers/</loc>
+    <lastmod>2015-08-03T13:39:46+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.ukio.info/blog/creating-a-new-theme/</loc>
+    <lastmod>2015-06-24T13:50:46+02:00</lastmod>
+  </url>
+  
+</urlset>

@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="http://gmpg.org/xfn/11" rel="profile">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>High quality graphics for your Latex document: The Matlab route</title>
+	
+	
+	
+	<link href='https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css' rel='stylesheet'
+				type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Alegreya:400italic,400,700,700italic&subset=latin,latin-ext'
+				rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Alegreya+SC:400&subset=latin,latin-ext' rel='stylesheet'
+				type='text/css'>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<link rel="apple-touch-icon-precomposed" href="http://www.ukio.info//apple-touch-icon.png">
+	<link rel="shortcut icon" href="http://www.ukio.info//favicon.ico"/>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Yukio Fukuzawa"/>
+	
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
+
+	<link rel="stylesheet" href="http://www.ukio.info//css/custom.css?version=1"/>
+</head>
+
+
+<body>
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="http://www.ukio.info/">Yukio Fukuzawa</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				
+				<li><a href="/blog">Blog</a></li>
+				
+				<li><a href="/publications">Publications</a></li>
+				
+				<li><a href="#about">About</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+
+<div class="container body-wrapper">
+	<div class="row">
+		
+		<div class="col-md-9" id="blog-post">
+			<h1>High quality graphics for your Latex document: The Matlab route</h1>
+			<p class="text-muted text-uppercase mb-small text-right">December 8, 2016</p>
+			<div id="post-content">
+				<p>You use <span class="latex">L<sup>a</sup>T<sub>e</sub>X</span> instead of a WYSIWYG word processing program because they can&rsquo;t cope with the high quality required for publication. But your nice professional looking documents can be ruined because you insert the wrong type of figures. Bitmap figures are easily pixelated because the actual size is not always known beforehand. Exporting figures as PDF to be included sounds like a good idea but you&rsquo;ll quickly notice the problem with the text (e.g. axis label and ticks,&hellip;) which needs to be rendered by Latex to get the correct font and size.</p>
+
+<p>Hard-core Tex users can find the answer to this problem in Tikz or Pgfplot. Of course figures generated at this level is as good as it gets. I use Tikz picture quite frequently for text-heavy diagrams and simple plots. However, if the figure is moderately complicated or if it&rsquo;s bound to precise data, then generating figures this way quickly becomes unmanageable.
+</p>
+
+<h2 id="matlab-comes-to-the-rescue">Matlab comes to the rescue</h2>
+
+<p>An alternative solution is to draw the plots in Matlab/Python (with matplotlib) and export it in a format that can be included in Latex with the text part of the figure stored separately. Matlab does not support this natively but there are lots of community scripts capable of doing so. Below are a few that I have tried (to my knowledge, I have tried all of them):</p>
+
+<ol>
+<li><p><a href="https://au.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz-matlab2tikz">Matlab2Tikz</a>: This script will convert Matlab plots to Tikz/PGFPlot figures which can be <code>\input{}</code> directly into your Tex document. Basically it writes the Tikz commands for you. The catch is that it can&rsquo;t deal with plots that have pixelated images, and not all types of plots can be converted. In my experience, this tools only works with simple plots. Try it with anything more than just a few curves and the generated file will likely to cause all sort of weird errors.</p></li>
+
+<li><p><a href="http://au.mathworks.com/matlabcentral/fileexchange/12962-matfig2pgf">Matfig2PGF</a>: Same idea as <strong>Matlab2Tikz</strong> but it generates PGF code instead. PGF is a lower level language than Tikz, so the generated file is usually quite big. It can blow out of 5000 lines easily even for mildly complicated figures. This might render your Tex editor out of memory. It also can&rsquo;t deal with pictures.</p></li>
+
+<li><p><a href="http://au.mathworks.com/matlabcentral/fileexchange/21286-matlabfrag">Matlabfrag</a>: This toll will generate two files, one EPS containing non-text part and one TEX file containing the text. Then you can use PsFrag to render the text and overlay it on top of the EPS file. This is one of the first complete solution I found, since the part that generates EPS file is actually a Matlab routine, so there should be no error to expect. However, PsFrag is notoriously difficult to handle, because it requires <code>--shell-escape</code> to be enabled to call a external routine for generating figures. The smallest changes to your environment will result in an error. I once wasted a whole day bashing my head against the monitor because the same document that had rendered a day before now resulted in an error. I later found out that the shell it escape to is <code>sh</code> (not even <code>Bash</code>), and for some reason the <code>PATH</code> variable was not loaded, preventing it from calling its external routines. Also, PsFrag requires <span class="latex">P<cap>d</cap><cap>f</cap>L<sup>a</sup>T<sub>e</sub>X</span> to function, so <span class="latex">X<sub>Ǝ</sub>T<sub>e</sub>X</span> will not work. Your only option if you want to use True Type Face fonts is <span class="latex">L<cap>u</cap><cap>a</cap>L<sup>a</sup>T<sub>e</sub>X</span>, in theory - because it didn&rsquo;t work for me. So I eventually ditched this option.</p></li>
+
+<li><p><a href="http://au.mathworks.com/matlabcentral/fileexchange/4638-laprint">Laprint</a> This is very similar to <strong>Matlabfrag</strong> except that it requires more parameters to be passed into. They have the exact same pros and cons.</p></li>
+
+<li><p><a href="https://au.mathworks.com/matlabcentral/fileexchange/52700-plot2latex">Plot2LaTeX</a> So far this is the best option and I&rsquo;ve been using this tool for a long time. It&rsquo;s also based on the idea of exporting text and non-text separately, then typeset the text on top of the figure. But that part is done using Inkscape. The tool simply export a SVG file using Matlab&rsquo;s built-in routine, then call inkscape to convert the SVG file to a PDF, which is purely graphic, and a <code>pdf_tex</code> file containing instructions to overlay that PDF with text. What&rsquo;s nice about it is that the SVG file is modifiable by inkscape. Sometimes the graph needs very minor modifications which might be difficult with Matlab (for example: convert the axes into arrows), but effortlessly doable in Inkscape. Detailed workflow for using Plot2LaTeX is presented below.</p></li>
+</ol>
+
+<h2 id="matlab-to-span-class-latex-l-sup-a-sup-t-sub-e-sub-x-span-via-plot2latex">Matlab to <span class="latex">L<sup>a</sup>T<sub>e</sub>X</span> via Plot2LaTeX</h2>
+
+<p>The workflow is simple, you just need to install Plot2LaTeX and Inkscape once, then:</p>
+
+<blockquote>
+<h4 id="summary-of-steps">Summary of steps:</h4>
+
+<ol>
+<li>Plot in Matlab</li>
+<li>Export with <code>Plot2Latex()</code> command</li>
+<li>If necessary: modify in Inkscape and save as <code>.pdf_tex</code></li>
+<li>Import into <span class="latex">L<sup>a</sup>T<sub>e</sub>X</span></li>
+</ol>
+</blockquote>
+
+<p>Let&rsquo;s break it down:</p>
+
+<h3 id="0-installation">0. Installation</h3>
+
+<p>Google will let you know where to download the latest version of Plot2Latex and Inkscape. On Mac, Inkscape requires <code>XQuartz</code> because it&rsquo;s built on XWindow. There&rsquo;s also a separate branch built on osxmenu which can run natively on Mac. There hasn&rsquo;t been any official release and the development seems to have stopped since May 2015 (last version was based on r12922). However it&rsquo;s stable enough for me (using OSX El Capitan) to recommend it. An executable can be downloaded from <a href="https://inkscape.org/en/~su_v/galleries/osxmenu-r12922/">here</a>.</p>
+
+<p>Plot2Latex will call Inkscape so it is necessary to provide the tool with the correct path to inkscape. Search for the line beginning with <code>DIR_INKSC =</code> and modify it, e.g.:</p>
+
+<pre>
+  <code class"matlab">
+DIR_INKSC = '/Applications/Inkscape.app/Contents/MacOS/inkscape';
+  </code>
+</pre>
+
+<h3 id="1-plot-in-matlab">1. Plot in Matlab</h3>
+
+<p>You can seriously go nuts! Bring it on any sort of plot you can think of. The routine eventually call Matlab&rsquo;s <code>saveas()</code> so as long as the MathWork guys don&rsquo;t mess it up, any plot should be savable. It&rsquo;s also possible to use Latex as the renderer for your strings.</p>
+
+<p><img src="/img/banners/latex-plot-2.png" width="100%"></p>
+
+<h3 id="2-export-with-plot2latex">2. Export with Plot2Latex</h3>
+
+<p>Once you&rsquo;re happy with the plot, you can export it with the following command:</p>
+
+<pre>
+  <code class"matlab">
+Plot2LaTeX(gcf, '/path/to/tex/figures/my_figure')
+  </code>
+</pre>
+
+<p>This will generates <code>my_figure.svg</code>, <code>my_figure.pdf</code> and <code>my_figure.pdf_tex</code> in folder <code>/path/to/tex/figures</code>. It is possible to use the <code>.pdf_tex</code> file right at this stage, but you might want to modify it a bit, at least to get rid of the empty margin surrounding the figures.</p>
+
+<h3 id="3-modify-in-inkscape">3. Modify in Inkscape</h3>
+
+<p>Open the SVG file with Inkscape. You&rsquo;ll need to get used to a few Inkscape commands but in general it&rsquo;s not that different from other image processing program. You&rsquo;ll need to get rid of several blank layers that span the whole page before you can modify anything. You can get Inkscape to automatically shrink the page to fit the actual figure, removing all white margin. And you can do that by clicking <code>File</code> -&gt; <code>Document Properties</code> (Keyboard shortcut:  <kbd class="is-icon">⇧⌘D</kbd>), expand <code>Resize page to content...</code>, then click on <code>Resize page to drawing or selection</code>.</p>
+
+<p><img src="/img/banners/latex-plot-3.png" width="100%" style="max-width: 500px;"></p>
+
+<p>Now you can save the changes to <code>.pdf_tex</code> by selecting <code>File</code> -&gt; <code>Save as</code> (Keyboard shortcut:  <kbd class="is-icon">⇧⌘S</kbd>), choose <code>PDF</code>, select <code>Omit text in PDF and create LaTeX file</code>. Now you&rsquo;re ready to import the figure into <span class="latex">L<sup>a</sup>T<sub>e</sub>X</span></p>
+
+<p><img src="/img/banners/latex-plot-4.png" width="100%" style="max-width: 500px;"></p>
+
+<h3 id="4-import-into-span-class-latex-l-sup-a-sup-t-sub-e-sub-x-span">4. Import into <span class="latex">L<sup>a</sup>T<sub>e</sub>X</span></h3>
+
+<p>The <code>.pdf_tex</code> file is nothing but a piece of TEX code, so you would import it into <span class="latex">L<sup>a</sup>T<sub>e</sub>X</span> using <code>\input{}</code> as following</p>
+
+<pre>
+  <code class"tex">
+\usepackage{graphicx}
+\graphicspath{{./figures/}}
+
+\begin{document}
+...
+\begin{figure}
+  \footnotesize
+  \def\svgwidth{.7\linewidth}
+  \input{figures/my_figure.pdf_tex}
+\end{figure}
+...
+\end{document}
+  </code>
+</pre>
+
+<blockquote>
+<h5 id="explain">Explain:</h5>
+
+<p><code>\graphicspath{{./figures/}}</code> You will need this because the <code>.pdf_tex</code> file will import the PDF file without fully qualified path. This is to tell it to find any PDF files in <code>figures/</code> folder.<br />
+<code>\footnotesize</code> Set the size of text elements to footnotesize.<br />
+<code>\def\svgwidth{.7\linewidth}</code> Set the overall width of the figure to be 0.7 the line&rsquo;s width.</p>
+</blockquote>
+
+<h3 id="result">Result:</h3>
+
+<p><img src="/img/banners/latex-plot-1.png" width="100%" style="max-width: 500px;"></p>
+
+<p>You can notice that the figure looks infinitely sharp and the text is typeset using the right font and size.</p>
+
+<h2 id="some-existing-problems">Some existing problems</h2>
+
+<p>There are two known problems, both belong to Inkscape. It might have well been fixed in earlier versions of Inkscape but since I prefer the osxmenu version, I&rsquo;m stuck with these bugs. I&rsquo;m listing them out here together with the solutions, in case you bump into one:</p>
+
+<ol>
+<li><p>Messy PDF pages
+Ideally all graphic elements should be on one page, but for some reason, sometimes Inkscape decides to draw them separately on different pages, then instruct <span class="latex">L<sup>a</sup>T<sub>e</sub>X</span> to layout them on top of each other, such as:</p>
+
+<pre>
+  <code class"tex">
+\put(0,0){\includegraphics[width=\unitlength,page=1]{myfig.pdf}}
+...
+\put(0,0){\includegraphics[width=\unitlength,page=2]{myfig.pdf}}
+  </code>
+</pre>
+
+<p>But the real problem comes from the generated <code>.pdf_tex</code>, most of the time the pages are off by 1, e.g. if the element is on page 3, the instruction will be to draw page 4. This will lead to error when the last page is drawn because the index is 1 more than the maximum. You will need to manually modify the page numbers to fix the problem.</p>
+
+<p>Most of the time, there will be a single-page PDF, but the <code>.pdf_tex</code> will import it twice, with the second time referring to page 2. In this case, simply remove the duplicate.</p></li>
+
+<li><p>Percentage sign
+<code>%</code> is the beginning of a comment in <span class="latex">L<sup>a</sup>T<sub>e</sub>X</span>, so if your plot has strings with a comment sign, it will be used without escaping in the <code>.pdf_tex</code> file. This will obviously lead to invalid syntax. Again, manual modification is required to fix it. You can also modify <code>Plot2LaTeX.m</code> to automatically escaping <code>%</code> before rendering the SVG file as following:</p>
+
+<pre>
+  <code class"matlab">
+function strXML = EscapeXML(str)
+  % ESCAPEXML repaces special characters(<,>,',",&) -> (&lt;,&gt;,&apos;,&quot;,&amp;)
+  escChar = {'&','<','>','''','"','%'};
+  repChar = {'&amp;','&lt;','&gt;','&apos;','&quot;','\\%'};
+  strXML = regexprep(str,escChar,repChar);
+end
+  </code>
+</pre></li>
+</ol>
+
+<h2 id="why-use-plot2latex-just-to-get-the-svg-file">Why use Plot2LaTeX just to get the SVG file</h2>
+
+<p>You might have realised that it doesn&rsquo;t seem necessary to use Plot2LaTeX, if we only care about the SVG, and the <code>.pdf_tex</code> part is generated manually with Inkscape. Can we export the figure directly to SVG using <code>saveas()</code>? Certainly, in some cases it might work. Problems arise when the plot has axes. All the ticks on an axis will be rendered as one long string, with single tick no longer binds to a data point. So when the figure is rendered in LaTex, the axis ticks will squash together. We need Plot2LaTeX to first separate the tick labels and bind them to the exact data point on the axes. This way no matter what font and size is used, the axis will always be rendered correctly.</p>
+
+				<hr/>
+<p style="font-size: 0.9em; line-height: 1.05em;">
+	If you like this post, please consider sharing with
+	<a href="https://twitter.com/intent/tweet?url=http%3a%2f%2fwww.ukio.info%2fblog%2fmatlab-to-latex%2f" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>,
+	<a href="https://www.facebook.com/sharer.php?u=http%3a%2f%2fwww.ukio.info%2fblog%2fmatlab-to-latex%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>,
+	<a href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fwww.ukio.info%2fblog%2fmatlab-to-latex%2f" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>,
+	<a href="https://plus.google.com/share?url=http%3a%2f%2fwww.ukio.info%2fblog%2fmatlab-to-latex%2f" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>,
+	or leave me a comment below.
+</p>
+
+				<hr/>
+				
+				<div id="comments">
+					<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ukio';
+    var disqus_identifier = 'http:\/\/www.ukio.info\/blog\/matlab-to-latex\/';
+    var disqus_title = 'High quality graphics for your Latex document: The Matlab route';
+    var disqus_url = 'http:\/\/www.ukio.info\/blog\/matlab-to-latex\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+				
+
+			</div>
+			
+
+		</div>
+		
+		
+		
+		<div class="col-md-3">
+			
+			<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+        <h3 class="panel-title">Search</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" results="0" class="form-control" placeholder="Search">
+                <input type="hidden" name="q" value="site:http://www.ukio.info/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="panel panel-default sidebar-menu">
+
+	<div class="panel-heading">
+		<h3 class="panel-title">Categories</h3>
+	</div>
+
+	<div class="panel-body">
+		<ul class="nav nav-pills nav-stacked categories">
+			
+			<li><a href="http://www.ukio.info/categories/academia">academia (1)</a>
+			</li>
+			
+			<li><a href="http://www.ukio.info/categories/lorem">lorem (1)</a>
+			</li>
+			
+			<li><a href="http://www.ukio.info/categories/phd-tips">phd-tips (2)</a>
+			</li>
+			
+			<li><a href="http://www.ukio.info/categories/programming">programming (2)</a>
+			</li>
+			
+			<li><a href="http://www.ukio.info/categories/pseudo">pseudo (1)</a>
+			</li>
+			
+			<li><a href="http://www.ukio.info/categories/starting">starting (1)</a>
+			</li>
+			
+		</ul>
+	</div>
+</div>
+
+
+
+<div class="panel panel-default sidebar-menu">
+    <div class="panel-heading">
+        <h3 class="panel-title">Tags</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="http://www.ukio.info/tags/automatic-update"><i class="fa fa-tags"></i> automatic-update</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/go"><i class="fa fa-tags"></i> go</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/golang"><i class="fa fa-tags"></i> golang</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/hugo"><i class="fa fa-tags"></i> hugo</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/integration"><i class="fa fa-tags"></i> integration</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/ipsum"><i class="fa fa-tags"></i> ipsum</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/latex"><i class="fa fa-tags"></i> latex</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/matlab"><i class="fa fa-tags"></i> matlab</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/mendeley"><i class="fa fa-tags"></i> mendeley</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/programming"><i class="fa fa-tags"></i> programming</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/publication"><i class="fa fa-tags"></i> publication</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/python"><i class="fa fa-tags"></i> python</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/theme"><i class="fa fa-tags"></i> theme</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+			
+		</div>
+		
+		
+	</div>
+	
+</div>
+
+<hr class="separator">
+
+<div class="whatisthis container">
+	<div class="row">
+		<div class="col-sm-5">
+			<h3><a id="about">about</a></h3>
+			<figure class="image-left">
+				<img class="avatar" src="https://graph.facebook.com/10206550437188227/picture?type=large" height="120" width="120">
+			</figure>
+			<p>I&rsquo;m <em>Yukio Fukuzawa</em>.
+				This is my personal blog dedicated to technilogy, my academic life,
+				my political point of view, and lots of suicidal thoughts.
+				I'm also a minimalist - a way of life that encourage freedom, simplicity and non-entanglement.
+				This part of mine also writes blog, which is available <a href="https://www.minima.blog">here</a>.
+
+		</div>
+
+		<div class="col-sm-4">
+			<h3>elsewhere</h3>
+			<ul class="compact fa-ul">
+				<li><i class="fa-li fa fa-university fa-fw" style="color:#b24;font-size:80%;padding-top:6px;"></i>INMS, Massey University, Auckland, New Zealand.
+				</li>
+				<li><i class="fa-li fa fa-envelope fa-fw" style="color:#b24;font-size:80%;padding-top:6px;"></i><a
+						href="mailto:y@%20this%20domain">y@ this domain</a></li>
+				<li><i class="fa-li fa fa-user-secret fa-fw" style="color:#b24;font-size:80%;padding-top:6px;"></i><a
+						href="https://www.keybase.io/yukio">keybase.io/yukio</a>, to sign or encrypt a message to send to
+					me privately.
+				</li>
+				<li><i class="fa-li fa fa-twitter-square fa-fw" style="color:#b24;font-size:80%;padding-top:6px;"></i><a
+						href="https://www.twitter.com/fzyukio">@fzyukio</a> on Twitter.
+				</li>
+				<li><i class="fa-li fa fa-facebook fa-fw" style="color:#b24;font-size:80%;padding-top:6px;"></i><a
+						href="https://www.facebook.com/yukio.nz">@yukio.nz</a> on Facebook.
+				</li>
+			</ul>
+		</div>
+		<div class="col-sm-3">
+			<h3>subscribe</h3>
+			<p>To receive updates from this site, you can
+				subscribe to the <a href="http://www.ukio.info//index.xml"><i class="fa fa-rss-square" style="color:#b24;"></i>&nbsp;RSS
+					feed</a> of all updates to the site in an RSS feed reader, or follow me on Twitter at <a
+						href="http://twitter.com/consequently"><i class="fa fa-twitter-square" style="color:#b24;"></i>&nbsp;@fzyukio</a>,
+				where I&rsquo;ll update you if anything is posted.</p>
+		</div>
+	</div>
+</div>
+
+<footer id="footer" class="navbar-fixed-bottom">
+	<section class="container">
+		<div class="row">
+			&copy;Yukio Fukuzawa 2015 &ndash; 2016. This site is created using <a href="http://gohugo.io">Hugo</a>,
+			the theme is based on <a href="http://consequently.org">Greg Restall</a>'s work
+		</div>
+	</section>
+</footer>
+
+<script
+		src="//code.jquery.com/jquery-3.1.1.slim.min.js"
+		integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+		crossorigin="anonymous"></script>
+
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+				integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+				crossorigin="anonymous"></script>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/languages/matlab.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/languages/tex.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/languages/python.min.js"></script>
+<script src="http://www.ukio.info/js/highlightjs-line-numbers.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$('pre code').each(function(i, block) {
+			var cleaned = block.textContent.replace(/^\s+|\s+$/g, '');
+			block.innerText = cleaned;
+			console.log(cleaned);
+			hljs.highlightBlock(block);
+			hljs.lineNumbersBlock(block);
+		});
+	});
+</script>
+
+<script type="text/javascript"
+				src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		tex2jax: {
+			inlineMath: [['$','$'], ['\\(','\\)']],
+			displayMath: [['$$','$$'], ['\[','\]']],
+			processEscapes: true,
+			processEnvironments: true,
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			TeX: { equationNumbers: { autoNumber: "AMS" },
+					 extensions: ["AMSmath.js", "AMSsymbols.js"] }
+		}
+	});
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+  xmlns:admin="http://webns.net/mvcb/"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+
+<channel>
+      <title>Publications-rsses in Yukio Fukuzawa </title>
+	  <itunes:subtitle>Yukio Fukuzawa's personal blogs</itunes:subtitle>
+	  <itunes:author>Yukio Fukuzawa</itunes:author>
+	  <itunes:owner>
+	  <itunes:name>Yukio Fukuzawa</itunes:name>
+	  <itunes:email>y@ this domain</itunes:email>
+	  </itunes:owner>
+	  <itunes:category text="Education">
+	  <itunes:category text="Higher Education"/>
+	  </itunes:category>
+	  <itunes:keywords>phd, latex, yukio fukuzawa, massey, new zealand</itunes:keywords>
+	  <itunes:explicit>no</itunes:explicit>
+	  <itunes:image href="http://www.ukio.info//img/avatar2.jpg" />
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://www.ukio.info/publications/index.xml</link>
+    <language>en-us</language>
+    
+    
+    <updated>Thu, 01 Dec 2016 00:00:00 UTC</updated>
+    
+ 
+    <item>
+      <title>Segmentation of Harmonic Syllables in Noisy Recordings of Bird Vocalisations</title>
+      <link>http://www.ukio.info/publications/ivcnz2016/</link>
+      <pubDate>Thu, 01 Dec 2016 00:00:00 UTC</pubDate>
+      
+      <guid>http://www.ukio.info/publications/ivcnz2016/</guid>
+      <description>&lt;![CDATA[&lt;p&gt;The  study  of  birdsong  has  implications  in  a  num-ber  of  biological  and  conservational  applications.  However,  theanalysis of bird vocalisations in the natural habitat is still largelya  laborious  task.  One  of  the  bottle  necks  is  the  segmentation  ofbird  vocalisations  into  individual  syllables.  Simple  segmentationin  time  domain  proves  difficult  because  of  overlapping  signalsover  different  frequency  bands.  The  common  approach  is  toconvert  audio  recordings  into  a  spectrogram  and  apply  imageprocessing  techniques  to  pick  out  the  signal  of  interest.  Weexamine several methods that have been proposed recently to dojust this and find that they are inadequate to deal with harmonicvocalisations.  We  propose  a  method  that  segments  syllables  bylooking  for  the  fundamental  frequency  first  then  works  its  wayup in the frequency axis to find other harmonics if they exist. Weevaluate  our  method  against  another  popular  method  and  findthat the proposed method can segment correctly more than 70%the number of syllables, more than twice that of the method weare  comparing  to&lt;/p&gt;
+]]></description>
+    </item>
+    
+ 
+    <item>
+      <title>First Degree Entailment, Symmetry and Paradox</title>
+      <link>http://www.ukio.info/publications/fde-symmetry-paradox/</link>
+      <pubDate>Fri, 14 Oct 2016 00:00:00 UTC</pubDate>
+      
+      <guid>http://www.ukio.info/publications/fde-symmetry-paradox/</guid>
+      <description>&lt;![CDATA[&lt;p&gt;Here is a puzzle, which I learned from Terence Parsons in his paper “True Contradictions”. First Degree Entailment (FDE) is a logic which allows for truth value gaps as well as truth value gluts. If you are agnostic between assigning paradoxical sentences gaps and gluts (and there seems to be no very good reason to prefer gaps over gluts or gluts over gaps if you are happy with FDE), then this looks no different, in effect, from assigning them a gap value? After all, on both views you end up with a theory that doesn&amp;rsquo;t commit you to the paradoxical sentence or its negation. How is the FDE theory any different from the theory with gaps alone?&lt;/p&gt;
+
+&lt;p&gt;In this paper, I will present a clear answer to this puzzle&amp;mdash;an answer that explains how being agnostic between gaps and gluts is a genuinely different position than admitting gaps alone, by using the formal notion of a bi-theory, and showing that while such positions might agree on what is to be accepted, they differ on what is to be rejected.&lt;/p&gt;
+]]></description>
+    </item>
+    
+  </channel>
+</rss>

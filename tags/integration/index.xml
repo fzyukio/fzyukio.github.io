@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" 
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+  xmlns:admin="http://webns.net/mvcb/"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+
+<channel>
+      <title> in Yukio Fukuzawa </title>
+	  <itunes:subtitle>Yukio Fukuzawa's personal blogs</itunes:subtitle>
+	  <itunes:author>Yukio Fukuzawa</itunes:author>
+	  <itunes:owner>
+	  <itunes:name>Yukio Fukuzawa</itunes:name>
+	  <itunes:email>y@ this domain</itunes:email>
+	  </itunes:owner>
+	  <itunes:category text="Education">
+	  <itunes:category text="Higher Education"/>
+	  </itunes:category>
+	  <itunes:keywords>phd, latex, yukio fukuzawa, massey, new zealand</itunes:keywords>
+	  <itunes:explicit>no</itunes:explicit>
+	  <itunes:image href="http://www.ukio.info//img/avatar2.jpg" />
+      <generator uri="https://gohugo.io">Hugo</generator>
+    <link>http://www.ukio.info/tags/integration/index.xml</link>
+    <language>en-us</language>
+    
+    
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+ 
+    <item>
+      <title>From Mendeley to LaTeX: a seamless integration</title>
+      <link>http://www.ukio.info/blog/mendeley-to-tex/</link>
+      <pubDate>Sat, 10 Dec 2016 00:01:00 &#43;1200</pubDate>
+      
+      <guid>http://www.ukio.info/blog/mendeley-to-tex/</guid>
+      <description>&lt;![CDATA[&lt;p&gt;Mendeley is the only reference manager, as I know, capable of updating a &lt;code&gt;bib&lt;/code&gt; file on the fly. That is: as soon as you import a new reference or make a change to an existing reference, it will export the updated version of the library to the &lt;code&gt;library.bib&lt;/code&gt; file in a predefined folder. This is especially nice if you&amp;rsquo;re writing a paper and constantly searching for new literature. If you&amp;rsquo;re only bothering with writing one paper, then this might be enough. When you write the second paper, simply instruct Mendeley to write to a different file. However, if you&amp;rsquo;re writing two or more scientific documents using the same set of references, then you will need something smarter. What&amp;rsquo;s more problematic is that Mendeley dumps everything inside the references, including location of the PDF and any notes you make. This might cause &lt;span class=&#34;latex&#34;&gt;L&lt;sup&gt;a&lt;/sup&gt;T&lt;sub&gt;e&lt;/sub&gt;X&lt;/span&gt; to fail to compile.
+&lt;/p&gt;
+
+&lt;h2 id=&#34;the-seamless-framework-explain&#34;&gt;The seamless framework explain&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say Mendeley is set to update &lt;code&gt;/path/to/tex-projects/library.bib&lt;/code&gt;, where &lt;code&gt;/path/to/tex&lt;/code&gt; is the location of the parent folder of all your &lt;span class=&#34;latex&#34;&gt;L&lt;sup&gt;a&lt;/sup&gt;T&lt;sub&gt;e&lt;/sub&gt;X&lt;/span&gt; documents, and &lt;code&gt;library.bib&lt;/code&gt; is the default name for the &lt;code&gt;bib&lt;/code&gt; file (you can&amp;rsquo;t change it). Let&amp;rsquo;s also say you are working on 3 projects &lt;code&gt;paper&lt;/code&gt;, &lt;code&gt;report&lt;/code&gt; and &lt;code&gt;book&lt;/code&gt; which uses the same reference set. Of course you can just use the absolute path to &lt;code&gt;library.bib&lt;/code&gt; in all these projects - but this makes your project non-portable. So you will need to use separate &lt;code&gt;bib&lt;/code&gt; files (with the same content) in all projects. What we need is a tool that monitors changes to &lt;code&gt;library.bib&lt;/code&gt;, which on change detected, will do the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Read &lt;code&gt;library.bib&lt;/code&gt; and clean up all the unnecessary fields.&lt;/li&gt;
+&lt;li&gt;Copy &lt;code&gt;library.bib&lt;/code&gt; to &lt;code&gt;/path/to/tex-projects/paper/&lt;/code&gt;, &lt;code&gt;/path/to/tex-projects/report/&lt;/code&gt; and &lt;code&gt;/path/to/tex-projects/book/&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So, let&amp;rsquo;s do it.&lt;/p&gt;
+
+&lt;h2 id=&#34;configure-mendeley&#34;&gt;Configure Mendeley.&lt;/h2&gt;
+
+&lt;p&gt;This step is simple: go to Mendeley&amp;rsquo;s Preferences (keyboard shortcut &lt;kbd&gt;⌘&lt;/kbd&gt;+&lt;kbd&gt;,&lt;/kbd&gt;), go to tab BibTeX and select the following options:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://www.ukio.info/img/banners/mendeley-to-tex-2.png&#34; width=&#34;100%&#34; style=&#34;max-width: 500px;&#34;&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;clean-up-library-bib&#34;&gt;Clean up library.bib&lt;/h2&gt;
+
+&lt;p&gt;I have written a small Python code that does this automatically. You can download it &lt;a href=&#34;http://www.ukio.info/files/cleanbib.py&#34;&gt;&lt;i class=&#34;fa fa-download&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt; here&lt;/a&gt;. Let&amp;rsquo;s say you save it to &lt;code&gt;/path/to/tex-projects/&lt;/code&gt;. I currently hardcode it to remove &lt;code&gt;annote&lt;/code&gt;, &lt;code&gt;annotate&lt;/code&gt;, &lt;code&gt;abstract&lt;/code&gt;, &lt;code&gt;mendeley-groups&lt;/code&gt;, &lt;code&gt;keywords&lt;/code&gt;, &lt;code&gt;file&lt;/code&gt;. These fields are quite problematic because they might be long and contain special character. I also make it comment out &lt;code&gt;issn&lt;/code&gt;, &lt;code&gt;isbn&lt;/code&gt;, &lt;code&gt;doi&lt;/code&gt;, just in case I want to have a quick look. All the other fields are kept intact. The utility takes two arguments, as following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;python&#34;&gt;
+cleanbib.py --file /path/to/tex-projects/library.bib --out /path/to/tex-projects/cleaned.bib
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This tells python to read the original references in &lt;code&gt;library.bib&lt;/code&gt;, clean it up and save the result in &lt;code&gt;cleaned.bib&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;copy-to-multiple-places&#34;&gt;Copy to multiple places&lt;/h2&gt;
+
+&lt;p&gt;To make it simple, I wrote a small script to do this, after calling &lt;code&gt;cleanbib&lt;/code&gt;, it also omits a notification on screen (only works for Mac). The script is pretty simple:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;bash&#34;&gt;
+#!/bin/bash
+
+# Omit a message
+osascript -e &#39;display notification &#34;library.bib cleaned up&#34; with title &#34;Mendeley change detected&#34;&#39;
+
+# Call the python script
+python /path/to/tex-projects/cleanbib.py -f /path/to/tex-projects/library.bib -o /path/to/tex-projects/cleaned.bib
+
+# Copy the result to all projects:
+cp /path/to/tex-projects/cleaned.bib /path/to/tex-projects/paper/cleaned.bib
+cp /path/to/tex-projects/cleaned.bib /path/to/tex-projects/report/cleaned.bib
+cp /path/to/tex-projects/cleaned.bib /path/to/tex-projects/book/cleaned.bib
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Let&amp;rsquo;s say you save this bash script in &lt;code&gt;/path/to/tex-projects/cleanbib.sh&lt;/code&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;putting-it-all-together&#34;&gt;Putting it all together&lt;/h2&gt;
+
+&lt;p&gt;The last thing we need is to listen to changes in &lt;code&gt;library.bib&lt;/code&gt; and run the bash code on change detected. &lt;a href=&#34;https://github.com/emcrisostomo/fswatch&#34;&gt;&lt;i class=&#34;fa fa-github&#34;&gt;&lt;code&gt;fswatch&lt;/code&gt;&lt;/i&gt;&lt;/a&gt; is a nice cross-platform tool that provides the functionality we want. We will hook &lt;code&gt;fswatch&lt;/code&gt; with &lt;code&gt;cleanbib.sh&lt;/code&gt; with the following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;bash&#34;&gt;
+fswatch -o /path/to/tex-projects/library.bib | xargs -n1 /path/to/tex-projects/cleanbib.sh &amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s it. Now &lt;code&gt;fswatch&lt;/code&gt; will work behind the scene, detecting any changes that Mendeley makes to &lt;code&gt;library.bib&lt;/code&gt;, then call &lt;code&gt;cleanbib.sh&lt;/code&gt; to clean up the &lt;code&gt;bib&lt;/code&gt; file and deploy it to all the projects that you&amp;rsquo;re working on. With this, as soon as you make any changes in Mendeley, you can immediately go back to your &lt;span class=&#34;latex&#34;&gt;T&lt;sub&gt;e&lt;/sub&gt;X&lt;/span&gt; editor (such as &lt;a href=&#34;http://www.texstudio.org/&#34;&gt;TexStudio&lt;/a&gt; - my recommendation) and cite the new or changed reference.&lt;/p&gt;
+
+&lt;h2 id=&#34;future-work&#34;&gt;Future work&lt;/h2&gt;
+
+&lt;p&gt;Obviously, these are quite some steps to do just a simple thing. In theory, a single &lt;code&gt;Python&lt;/code&gt; file should be able to do all that - listen to file change, displaying notification, clean up the &lt;code&gt;bib&lt;/code&gt; file and deploy to several places. In addition, it should be possible for user to provide a set of key they want to keep as argument, instead of having them hardcoded. This is dedicated as future work.&lt;/p&gt;]]></description>
+    </item>
+    
+  </channel>
+</rss>

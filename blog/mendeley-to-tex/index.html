@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="http://gmpg.org/xfn/11" rel="profile">
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<title>From Mendeley to LaTeX: a seamless integration</title>
+	
+	
+	
+	<link href='https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/lumen/bootstrap.min.css' rel='stylesheet'
+				type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Alegreya:400italic,400,700,700italic&subset=latin,latin-ext'
+				rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Alegreya+SC:400&subset=latin,latin-ext' rel='stylesheet'
+				type='text/css'>
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+	
+	<link rel="apple-touch-icon-precomposed" href="http://www.ukio.info//apple-touch-icon.png">
+	<link rel="shortcut icon" href="http://www.ukio.info//favicon.ico"/>
+	
+	<link href="" rel="alternate" type="application/rss+xml" title="Yukio Fukuzawa"/>
+	
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
+
+	<link rel="stylesheet" href="http://www.ukio.info//css/custom.css?version=1"/>
+</head>
+
+
+<body>
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="http://www.ukio.info/">Yukio Fukuzawa</a>
+		</div>
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				
+				<li><a href="/blog">Blog</a></li>
+				
+				<li><a href="/publications">Publications</a></li>
+				
+				<li><a href="#about">About</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+
+<div class="container body-wrapper">
+	<div class="row">
+		
+		<div class="col-md-9" id="blog-post">
+			<h1>From Mendeley to LaTeX: a seamless integration</h1>
+			<p class="text-muted text-uppercase mb-small text-right">December 10, 2016</p>
+			<div id="post-content">
+				<p>Mendeley is the only reference manager, as I know, capable of updating a <code>bib</code> file on the fly. That is: as soon as you import a new reference or make a change to an existing reference, it will export the updated version of the library to the <code>library.bib</code> file in a predefined folder. This is especially nice if you&rsquo;re writing a paper and constantly searching for new literature. If you&rsquo;re only bothering with writing one paper, then this might be enough. When you write the second paper, simply instruct Mendeley to write to a different file. However, if you&rsquo;re writing two or more scientific documents using the same set of references, then you will need something smarter. What&rsquo;s more problematic is that Mendeley dumps everything inside the references, including location of the PDF and any notes you make. This might cause <span class="latex">L<sup>a</sup>T<sub>e</sub>X</span> to fail to compile.
+</p>
+
+<h2 id="the-seamless-framework-explain">The seamless framework explain</h2>
+
+<p>Let&rsquo;s say Mendeley is set to update <code>/path/to/tex-projects/library.bib</code>, where <code>/path/to/tex</code> is the location of the parent folder of all your <span class="latex">L<sup>a</sup>T<sub>e</sub>X</span> documents, and <code>library.bib</code> is the default name for the <code>bib</code> file (you can&rsquo;t change it). Let&rsquo;s also say you are working on 3 projects <code>paper</code>, <code>report</code> and <code>book</code> which uses the same reference set. Of course you can just use the absolute path to <code>library.bib</code> in all these projects - but this makes your project non-portable. So you will need to use separate <code>bib</code> files (with the same content) in all projects. What we need is a tool that monitors changes to <code>library.bib</code>, which on change detected, will do the following:</p>
+
+<ol>
+<li>Read <code>library.bib</code> and clean up all the unnecessary fields.</li>
+<li>Copy <code>library.bib</code> to <code>/path/to/tex-projects/paper/</code>, <code>/path/to/tex-projects/report/</code> and <code>/path/to/tex-projects/book/</code></li>
+</ol>
+
+<p>So, let&rsquo;s do it.</p>
+
+<h2 id="configure-mendeley">Configure Mendeley.</h2>
+
+<p>This step is simple: go to Mendeley&rsquo;s Preferences (keyboard shortcut <kbd>⌘</kbd>+<kbd>,</kbd>), go to tab BibTeX and select the following options:</p>
+
+<p><img src="/img/banners/mendeley-to-tex-2.png" width="100%" style="max-width: 500px;"></p>
+
+<h2 id="clean-up-library-bib">Clean up library.bib</h2>
+
+<p>I have written a small Python code that does this automatically. You can download it <a href="/files/cleanbib.py"><i class="fa fa-download" aria-hidden="true"></i> here</a>. Let&rsquo;s say you save it to <code>/path/to/tex-projects/</code>. I currently hardcode it to remove <code>annote</code>, <code>annotate</code>, <code>abstract</code>, <code>mendeley-groups</code>, <code>keywords</code>, <code>file</code>. These fields are quite problematic because they might be long and contain special character. I also make it comment out <code>issn</code>, <code>isbn</code>, <code>doi</code>, just in case I want to have a quick look. All the other fields are kept intact. The utility takes two arguments, as following:</p>
+
+<pre><code class="python">
+cleanbib.py --file /path/to/tex-projects/library.bib --out /path/to/tex-projects/cleaned.bib
+</code></pre>
+
+<p>This tells python to read the original references in <code>library.bib</code>, clean it up and save the result in <code>cleaned.bib</code></p>
+
+<h2 id="copy-to-multiple-places">Copy to multiple places</h2>
+
+<p>To make it simple, I wrote a small script to do this, after calling <code>cleanbib</code>, it also omits a notification on screen (only works for Mac). The script is pretty simple:</p>
+
+<pre><code class="bash">
+#!/bin/bash
+
+# Omit a message
+osascript -e 'display notification "library.bib cleaned up" with title "Mendeley change detected"'
+
+# Call the python script
+python /path/to/tex-projects/cleanbib.py -f /path/to/tex-projects/library.bib -o /path/to/tex-projects/cleaned.bib
+
+# Copy the result to all projects:
+cp /path/to/tex-projects/cleaned.bib /path/to/tex-projects/paper/cleaned.bib
+cp /path/to/tex-projects/cleaned.bib /path/to/tex-projects/report/cleaned.bib
+cp /path/to/tex-projects/cleaned.bib /path/to/tex-projects/book/cleaned.bib
+</code></pre>
+
+<p>Let&rsquo;s say you save this bash script in <code>/path/to/tex-projects/cleanbib.sh</code></p>
+
+<h2 id="putting-it-all-together">Putting it all together</h2>
+
+<p>The last thing we need is to listen to changes in <code>library.bib</code> and run the bash code on change detected. <a href="https://github.com/emcrisostomo/fswatch"><i class="fa fa-github"><code>fswatch</code></i></a> is a nice cross-platform tool that provides the functionality we want. We will hook <code>fswatch</code> with <code>cleanbib.sh</code> with the following command:</p>
+
+<pre><code class="bash">
+fswatch -o /path/to/tex-projects/library.bib | xargs -n1 /path/to/tex-projects/cleanbib.sh &
+</code></pre>
+
+<p>That&rsquo;s it. Now <code>fswatch</code> will work behind the scene, detecting any changes that Mendeley makes to <code>library.bib</code>, then call <code>cleanbib.sh</code> to clean up the <code>bib</code> file and deploy it to all the projects that you&rsquo;re working on. With this, as soon as you make any changes in Mendeley, you can immediately go back to your <span class="latex">T<sub>e</sub>X</span> editor (such as <a href="http://www.texstudio.org/">TexStudio</a> - my recommendation) and cite the new or changed reference.</p>
+
+<h2 id="future-work">Future work</h2>
+
+<p>Obviously, these are quite some steps to do just a simple thing. In theory, a single <code>Python</code> file should be able to do all that - listen to file change, displaying notification, clean up the <code>bib</code> file and deploy to several places. In addition, it should be possible for user to provide a set of key they want to keep as argument, instead of having them hardcoded. This is dedicated as future work.</p>
+
+				<hr/>
+<p style="font-size: 0.9em; line-height: 1.05em;">
+	If you like this post, please consider sharing with
+	<a href="https://twitter.com/intent/tweet?url=http%3a%2f%2fwww.ukio.info%2fblog%2fmendeley-to-tex%2f" class="fa fa-twitter article-share-twitter" target="_blank" title="Twitter"></a>,
+	<a href="https://www.facebook.com/sharer.php?u=http%3a%2f%2fwww.ukio.info%2fblog%2fmendeley-to-tex%2f" class="fa fa-facebook article-share-facebook" target="_blank" title="Facebook"></a>,
+	<a href="http://pinterest.com/pin/create/button/?url=http%3a%2f%2fwww.ukio.info%2fblog%2fmendeley-to-tex%2f" class="fa fa-pinterest article-share-pinterest" target="_blank" title="Pinterest"></a>,
+	<a href="https://plus.google.com/share?url=http%3a%2f%2fwww.ukio.info%2fblog%2fmendeley-to-tex%2f" class="fa fa-google article-share-google" target="_blank" title="Google+"></a>,
+	or leave me a comment below.
+</p>
+
+				<hr/>
+				
+				<div id="comments">
+					<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'ukio';
+    var disqus_identifier = 'http:\/\/www.ukio.info\/blog\/mendeley-to-tex\/';
+    var disqus_title = 'From Mendeley to LaTeX: a seamless integration';
+    var disqus_url = 'http:\/\/www.ukio.info\/blog\/mendeley-to-tex\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+				</div>
+				
+
+			</div>
+			
+
+		</div>
+		
+		
+		
+		<div class="col-md-3">
+			
+			<div class="panel panel-default sidebar-menu">
+
+    <div class="panel-heading">
+        <h3 class="panel-title">Search</h3>
+    </div>
+
+    <div class="panel-body">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+            <div class="input-group">
+                <input type="search" name="q" results="0" class="form-control" placeholder="Search">
+                <input type="hidden" name="q" value="site:http://www.ukio.info/">
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="panel panel-default sidebar-menu">
+
+	<div class="panel-heading">
+		<h3 class="panel-title">Categories</h3>
+	</div>
+
+	<div class="panel-body">
+		<ul class="nav nav-pills nav-stacked categories">
+			
+			<li><a href="http://www.ukio.info/categories/academia">academia (1)</a>
+			</li>
+			
+			<li><a href="http://www.ukio.info/categories/lorem">lorem (1)</a>
+			</li>
+			
+			<li><a href="http://www.ukio.info/categories/phd-tips">phd-tips (2)</a>
+			</li>
+			
+			<li><a href="http://www.ukio.info/categories/programming">programming (2)</a>
+			</li>
+			
+			<li><a href="http://www.ukio.info/categories/pseudo">pseudo (1)</a>
+			</li>
+			
+			<li><a href="http://www.ukio.info/categories/starting">starting (1)</a>
+			</li>
+			
+		</ul>
+	</div>
+</div>
+
+
+
+<div class="panel panel-default sidebar-menu">
+    <div class="panel-heading">
+        <h3 class="panel-title">Tags</h3>
+    </div>
+
+    <div class="panel-body">
+        <ul class="tag-cloud">
+            
+            <li><a href="http://www.ukio.info/tags/automatic-update"><i class="fa fa-tags"></i> automatic-update</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/go"><i class="fa fa-tags"></i> go</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/golang"><i class="fa fa-tags"></i> golang</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/hugo"><i class="fa fa-tags"></i> hugo</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/integration"><i class="fa fa-tags"></i> integration</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/ipsum"><i class="fa fa-tags"></i> ipsum</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/latex"><i class="fa fa-tags"></i> latex</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/matlab"><i class="fa fa-tags"></i> matlab</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/mendeley"><i class="fa fa-tags"></i> mendeley</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/programming"><i class="fa fa-tags"></i> programming</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/publication"><i class="fa fa-tags"></i> publication</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/python"><i class="fa fa-tags"></i> python</a>
+            </li>
+            
+            <li><a href="http://www.ukio.info/tags/theme"><i class="fa fa-tags"></i> theme</a>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+
+
+			
+		</div>
+		
+		
+	</div>
+	
+</div>
+
+<hr class="separator">
+
+<div class="whatisthis container">
+	<div class="row">
+		<div class="col-sm-5">
+			<h3><a id="about">about</a></h3>
+			<figure class="image-left">
+				<img class="avatar" src="https://graph.facebook.com/10206550437188227/picture?type=large" height="120" width="120">
+			</figure>
+			<p>I&rsquo;m <em>Yukio Fukuzawa</em>.
+				This is my personal blog dedicated to technilogy, my academic life,
+				my political point of view, and lots of suicidal thoughts.
+				I'm also a minimalist - a way of life that encourage freedom, simplicity and non-entanglement.
+				This part of mine also writes blog, which is available <a href="https://www.minima.blog">here</a>.
+
+		</div>
+
+		<div class="col-sm-4">
+			<h3>elsewhere</h3>
+			<ul class="compact fa-ul">
+				<li><i class="fa-li fa fa-university fa-fw" style="color:#b24;font-size:80%;padding-top:6px;"></i>INMS, Massey University, Auckland, New Zealand.
+				</li>
+				<li><i class="fa-li fa fa-envelope fa-fw" style="color:#b24;font-size:80%;padding-top:6px;"></i><a
+						href="mailto:y@%20this%20domain">y@ this domain</a></li>
+				<li><i class="fa-li fa fa-user-secret fa-fw" style="color:#b24;font-size:80%;padding-top:6px;"></i><a
+						href="https://www.keybase.io/yukio">keybase.io/yukio</a>, to sign or encrypt a message to send to
+					me privately.
+				</li>
+				<li><i class="fa-li fa fa-twitter-square fa-fw" style="color:#b24;font-size:80%;padding-top:6px;"></i><a
+						href="https://www.twitter.com/fzyukio">@fzyukio</a> on Twitter.
+				</li>
+				<li><i class="fa-li fa fa-facebook fa-fw" style="color:#b24;font-size:80%;padding-top:6px;"></i><a
+						href="https://www.facebook.com/yukio.nz">@yukio.nz</a> on Facebook.
+				</li>
+			</ul>
+		</div>
+		<div class="col-sm-3">
+			<h3>subscribe</h3>
+			<p>To receive updates from this site, you can
+				subscribe to the <a href="http://www.ukio.info//index.xml"><i class="fa fa-rss-square" style="color:#b24;"></i>&nbsp;RSS
+					feed</a> of all updates to the site in an RSS feed reader, or follow me on Twitter at <a
+						href="http://twitter.com/consequently"><i class="fa fa-twitter-square" style="color:#b24;"></i>&nbsp;@fzyukio</a>,
+				where I&rsquo;ll update you if anything is posted.</p>
+		</div>
+	</div>
+</div>
+
+<footer id="footer" class="navbar-fixed-bottom">
+	<section class="container">
+		<div class="row">
+			&copy;Yukio Fukuzawa 2015 &ndash; 2016. This site is created using <a href="http://gohugo.io">Hugo</a>,
+			the theme is based on <a href="http://consequently.org">Greg Restall</a>'s work
+		</div>
+	</section>
+</footer>
+
+<script
+		src="//code.jquery.com/jquery-3.1.1.slim.min.js"
+		integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+		crossorigin="anonymous"></script>
+
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+				integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+				crossorigin="anonymous"></script>
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/languages/matlab.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/languages/tex.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/languages/python.min.js"></script>
+<script src="http://www.ukio.info/js/highlightjs-line-numbers.min.js"></script>
+
+<script>
+	$(document).ready(function() {
+		$('pre code').each(function(i, block) {
+			var cleaned = block.textContent.replace(/^\s+|\s+$/g, '');
+			block.innerText = cleaned;
+			console.log(cleaned);
+			hljs.highlightBlock(block);
+			hljs.lineNumbersBlock(block);
+		});
+	});
+</script>
+
+<script type="text/javascript"
+				src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		tex2jax: {
+			inlineMath: [['$','$'], ['\\(','\\)']],
+			displayMath: [['$$','$$'], ['\[','\]']],
+			processEscapes: true,
+			processEnvironments: true,
+			skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			TeX: { equationNumbers: { autoNumber: "AMS" },
+					 extensions: ["AMSmath.js", "AMSsymbols.js"] }
+		}
+	});
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+</script>
+
+</body>
+</html>

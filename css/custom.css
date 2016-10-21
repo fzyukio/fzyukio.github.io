@@ -1,0 +1,424 @@
+body {
+	font-family: 'Alegreya', 'Hoefler Text', Times, serif;
+	font-size: 16px;
+	background-color: #faf8f8;
+	margin-bottom: -70px;
+	padding: 50px 0 70px;
+	line-height: 1.65em;
+	color: #222222;
+}
+
+.body-wrapper {
+	min-height: calc(100vh - 50px - 450px);
+}
+
+footer {
+	background-color: #faf8f8;
+}
+
+p,li {
+	line-height: 1.5em;
+}
+
+a.badge:focus,
+a.badge:hover {
+	color: #ff4136;
+}
+
+.label, .badge {
+	background: #e0e3e5;
+	display: inline-block;
+	line-height: 1;
+	padding: 4px 7px 3px 7px;
+	color: #0f0f0f;
+	text-align: center;
+	font-weight: normal;
+	text-transform: uppercase;
+}
+
+.feature-post .feature-image {
+	float: left;
+	width: 35%;
+	margin-right: 20px;
+}
+
+.feature-post .author-category {
+	margin-bottom: .5em;
+}
+
+.feature-post h4 {
+	margin-bottom: 0;
+	font-weight: bold;
+}
+
+.col-md-4.other-posts .feature-image {
+	padding: 0;
+}
+
+.recent-posts, .recent-publication {
+	margin-top: 20px;
+	padding-top: 20px;
+}
+
+.other-posts .feature-image img {
+	border-radius: 0;
+}
+
+.other-posts .other-post {
+	margin-bottom: 1.65em;
+}
+
+.other-post.row {
+	margin-right: 0;
+	margin-left: 0;
+	padding-right: 0;
+	padding-left: 0;
+}
+
+.other-posts.row {
+	margin-right: 0;
+	margin-left: 0;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.other-post .title-and-author {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.other-post .title-and-author h5 {
+	text-align: left;
+}
+
+.other-post .title-and-author:last-child {
+	padding-right: 0;
+}
+
+.other-posts .date {
+	margin-bottom: 0;
+	line-height: 1em;
+	font-size: .8em;
+}
+
+.recent-publication .icon {
+	color: #e88;
+	font-size: 0.8em;
+	padding-top: 6px;
+}
+
+.all-posts a {
+	float: right;
+	text-transform: lowercase;
+	font-family: 'Alegreya SC';
+	font-size: 1em;
+}
+
+.has-lines {
+	display: flex;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+}
+
+.has-lines:before {
+	margin-right: 20px;
+}
+
+.has-lines:after {
+	margin-left: 20px;
+}
+
+.has-lines p {
+	color: #b24;
+	margin: 0;
+}
+
+.has-lines a:hover {
+	text-decoration: none;
+}
+
+.has-lines:before, .has-lines:after {
+	content: '';
+	flex-grow: 1;
+	height: 1px;
+	background: #b24;
+	min-width: 20px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#navbar {
+	float: right;
+}
+
+.navbar {
+	background-color: #b33;
+	margin-bottom: 0;
+}
+
+.navbar .navbar-brand {
+	color: #fff;
+}
+
+.navbar .navbar-nav > li > a {
+	color: #ecc;
+}
+
+form, input[type="search"], select[multiple="multiple"] {
+	font-family: 'Alegreya', 'Trebuchet MS', Helvetica, Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+	font-family: 'Alegreya', 'Trebuchet MS', Helvetica, Arial, sans-serif;
+	font-style: italic;
+	color: #b24;
+}
+
+h3, h4, h5 {
+	font-weight: normal;
+}
+
+h2, h3 {
+	text-transform: lowercase;
+	font-family: 'Alegreya SC', serif;
+	font-style: normal;
+}
+
+.label-red {
+	background-color: #b24;
+}
+
+a {
+	color: #b24;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+nav {
+	text-transform: lowercase;
+	font-family: 'Alegreya SC', serif;
+}
+
+.hd {
+	font-family: 'Alegreya', serif;
+}
+
+.caps {
+	text-transform: lowercase;
+	font-family: 'Alegreya SC', serif;
+}
+
+hr {
+	border-top: 1px solid #ecc;
+	margin-top: 5ex;
+	margin-bottom: 5ex;
+}
+
+.separator {
+	border-top: 5px solid #ecc;
+}
+
+h2 {
+	border-bottom: 1px solid #ecc;
+}
+
+.whatisthis {
+	font-size: 0.9em; line-height: 1.05em;
+}
+
+.avatar {
+	-webkit-border-radius: 50em;
+	-moz-border-radius: 50em;
+	border-radius: 50em;
+}
+
+.image-left {
+	float: left;
+	margin: 0 1em 1em 0;
+}
+
+.sidebar {
+	margin-top: 20px;
+}
+
+h5, h6, .h5, .h6 {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+/* =Footer
+-----------------------------------------------------------------------------*/
+
+.dateblock {
+	text-align: right;
+}
+
+/* =Footer
+-----------------------------------------------------------------------------*/
+#footer {
+	color: #ecc;
+	margin-top: 3ex;
+	padding-bottom: 20px;
+	font-size: .9em;
+	padding-top: 1em;
+	background-color: #b33;
+	overflow: hidden;
+	border-top: 3px solid #b24;
+}
+
+#footer a {
+	color: #fff;
+}
+
+#footer section {
+	float: none;
+	text-align: center;
+}
+
+#footer nav {
+	float: right;
+}
+
+#footer nav ul {
+	list-style: none;
+	margin: 0;
+}
+
+#footer nav ul li {
+	float: left;
+	margin-left: 2em;
+}
+
+code.has-jax {
+	font-size: 100%;
+	background: inherit;
+	border: inherit;
+	color: inherit;
+}
+
+
+/* ----- POST ---- */
+/*
+ * Thanks to http://nitens.org/taraborelli/tools
+ */
+
+.latex {
+	font-family: Times, "Times New Roman", serif;
+	letter-spacing: 1px;
+	text-transform: none;
+}
+
+.latex sub {
+	text-transform: uppercase;
+	vertical-align: -0.5ex;
+	margin-left: -0.1667em;
+	margin-right: -0.125em;
+	font-size: 1em;
+	bottom: 0;
+}
+
+.latex sup {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 0.85em;
+	vertical-align: 0.15em;
+	margin-left: -0.36em;
+	margin-right: -0.15em;
+	top: 0;
+}
+
+.latex cap {
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 0.8em;
+	margin-left: -0.025em;
+	margin-right: -0.125em;
+}
+
+/*
+ * kdb icon
+ */
+kbd.is-icon {
+	font-family: Corbel, 'Lucida Grande', Helvetica, sans-serif;
+	font-size: .8em;
+}
+
+pre {
+	white-space: inherit;
+}
+
+.hljs {
+	overflow-x: auto;
+	-webkit-text-size-adjust: none;
+	white-space: pre;
+	background-color: inherit;
+	padding: 5px;
+}
+
+.hljs-line-numbers {
+	text-align: right;
+	color: #999;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+code {
+	font-size: .8em;
+}
+
+blockquote {
+	font-size: 1em;
+}
+
+.tag-cloud {
+	list-style: none;
+	padding-left: 1em;
+}
+
+.tag-cloud li {
+	display: inline;
+	padding-right: 1em;
+}
+
+.tag-cloud li a {
+	white-space: nowrap;
+}
+
+.categories li a {
+	white-space: nowrap;
+	padding-top: .25em;
+	padding-bottom: 0;
+}
+
+.btn-danger {
+	color: #fff;
+	background-color: #b33;
+	border-color: #c33;
+}
+
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-nav>li>a:focus {
+	background-color: #ff4136;
+	border-color: #ff291c;
+	color: white;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+	background-color: #ff4136;
+	border-color: #ff291c;
+	color: white;
+}
+
+a:hover, a:focus {
+	color: #ff4136;
+	text-decoration: underline;
+}
