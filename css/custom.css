@@ -401,22 +401,7 @@ blockquote {
 	font-size: 1em;
 }
 
-.tag-cloud {
-	list-style: none;
-	padding-left: 1em;
-}
-
-.tag-cloud li {
-	display: inline;
-	padding-right: 1em;
-}
-
-.tag-cloud li a {
-	white-space: nowrap;
-}
-
 .categories li a {
-	white-space: nowrap;
 	padding-top: .25em;
 	padding-bottom: 0;
 }
