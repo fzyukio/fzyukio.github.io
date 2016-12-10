@@ -445,3 +445,17 @@ a:hover, a:focus {
 	color: #ff4136;
 	text-decoration: underline;
 }
+
+.navbar-collapse {
+	background-color: #b33;
+	color: white;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #fff;
+}
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+	background-color: #ff4136;
+}
