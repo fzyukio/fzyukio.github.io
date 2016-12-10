@@ -23,8 +23,9 @@
 	
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
 
-	<link rel="stylesheet" href="/css/custom.css?version=3"/>
+	<link rel="stylesheet" href="/css/custom.css?version=5"/>
 </head>
+
 
 
 <body>
@@ -44,29 +45,81 @@
 			<a class="navbar-brand" href="http://www.ukio.info/"><img src="/img/logo/icon_owl-simple-white-transparent.png">Yukio Fukuzawa</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav nav-pill">
+				<li class=" inactive "><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+				<li class="dropdown  inactive ">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-wordpress" aria-hidden="true"></i> Blog
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li ><a href="/blog"><i class="fa fa-globe" aria-hidden="true"></i> All posts</a></li>
+						<li class="disabled small"><a href="#"><i class="fa fa-desktop" aria-hidden="true"></i> Computer stuff</a></li>
+						<li class="disabled small"><a href="#"><i class="fa fa-book" aria-hidden="true"></i> Academia</a></li>
+						<li><a href="https://www.minima.blog"><i class="fa fa-leaf" aria-hidden="true"></i> Minima</a></li>
+
+						<li role="separator" class="divider"></li>
+						<li class="dropdown-header">NSFSJW</li>
+						<li class="disabled"><a href="#"><i class="fa fa-university" aria-hidden="true"></i> Politics</a></li>
+					</ul>
+				</li>
+				<li class=" active ">
+					<a href="/publications"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Publications</a>
+				</li>
 				
-				<li><a href="/blog">Blog</a></li>
-				
-				<li><a href="/publications">Publications</a></li>
-				
-				<li><a href="#about">About</a></li>
+				<li><a href="#about"><i class="fa fa-info-circle" aria-hidden="true"></i> About</a></li>
 			</ul>
 		</div>
 	</div>
 </nav>
 
+<svg class="defs-only" style="display: none;">
+	<filter id="monochrome" color-interpolation-filters="sRGB"
+					x="0" y="0" height="100%" width="100%">
+		<feColorMatrix type="matrix"
+									 values="
+									 1 0 0 0  .5
+                   1 0 0 0  0
+                   1 0 0 0  0
+                   0 0 0 1  0" />
+	</filter>
+</svg>
+
 <div class="container body-wrapper">
 	<div class="row">
-		<div class="col-xs-3">&nbsp;</div>
-		<div class="col-xs-9"><h2><a href="">Traffic Sign Recognition system on Android devices</a></h2></div>
+		<div class="hidden-xm col-sm-4 col-md-3 hidden-lg">&nbsp;</div>
+		<div class="col-xs-12 col-sm-8 col-md-9"><h2><a href="">Traffic Sign Recognition system on Android devices</a></h2></div>
 	</div>
 	<div class="row">
-		<div class="col-xs-3 dateblock"><p>Yukio Fukuzawa (2013). <em>Traffic Sign Recognition system on Android devices</em> (Unpublished bachelor thesis). Massey University, Auckland, New Zealand.</p>
-			<p class="small"><a href="http://dx.doi.org/10.13140/RG.2.2.27158.55364">doi:10.13140/RG.2.2.27158.55364</a></p>
-			<p><a href="https://www.academia.edu/4950526/Traffic_Sign_Recognition_system_on_Android_devices" class="badge badge-red"><i class="fa fa-file-pdf-o"></i>&nbsp;download pdf</a></p><p class="small">You are welcome to download and read this document. I <em>especially</em> welcome feedback on it. As it is not yet published in final form, if you want to cite the paper, please check with me first. Thanks.</p>
+		<div class="col-xs-12 col-sm-4 col-md-3 citation-doi small">
+			<div class="col-xs-12">
+			<p>Yukio Fukuzawa (2013). <em>Traffic Sign Recognition system on Android devices</em> (Unpublished bachelor thesis). Massey University, Auckland, New Zealand.</p>
 		</div>
-		<div class="col-xs-9">
+			<div class="col-xs-6 col-sm-12 doi">
+				
+				<a href="http://dx.doi.org/10.13140/RG.2.2.27158.55364">
+					doi:10.13140/RG.2.2.27158.55364
+				</a>
+				
+			</div>
+			<div class="col-xs-6 col-sm-12 citation">
+				
+				<a href="https://www.academia.edu/4950526/Traffic_Sign_Recognition_system_on_Android_devices" class="badge badge-red">
+					<i class="fa fa-file-pdf-o"></i>&nbsp;download pdf
+				</a>
+				
+			</div>
+			<div class="col-xs-12">
+				<p class="unpublished-warning">
+					You are welcome to download and read this document.
+					I <em>especially</em> welcome feedback on it.
+					As it is not yet published in final form,
+					if you want to cite the paper, please check with me first. Thanks.
+				</p>
+			</div>
+		</div>
+
+		<div class="col-xs-12 col-sm-8 col-md-9">
 			<p>This project implements on an Android device a Traﬃc Sign Recognition(TSR) system capable of recognising 85 New Zealand traﬃc signs with variouscolours and shapes. I ﬁnd it possible to have such system running almost realtime on medium-class Android devices by having the core processing modulewritten in native code, interacting with the user interface via JNI calls. Dif-ferent techniques are used to extract sign candidates from raw images beforethey are classiﬁed to the correct class. The ﬁrst technique uses a colour ﬁlteroperating on either HSV or RGB colour space to ﬁlter out non-sign pixelsand the sign detector is applied on the remaining part of the images. Thesecond technique applies the detector on two consecutive raw images withoutcolour-ﬁltering. Sign detector is a AdaBoost classiﬁer using Linear BinaryPattern (LBP) to extract features. Products of sign detector are called ”signcandidates” and recognised by a back propagating neural network. This reportﬁnds the colour-ﬁltering technique with the ﬁltering threshold carefully tunedoverperforms the cascade detecting technique, but the latter is less likely tomiss a sign in diﬀerent lighting conditions.</p>
 
 
@@ -122,14 +175,14 @@
 	<div class="row">
 		<div class="col-sm-6 col-md-5 col-lg-4">
 			<h3><a id="about">About me</a></h3>
-				<img class="avatar avatar-corner" src="/img/logo/icon_owl-simple-red-white.png">
-				<p>I&rsquo;m <em>Yukio Fukuzawa</em>.
-					This is my personal blog dedicated to technology, my academic life,
-					my political point of view, and lots of suicidal thoughts.
-					I'm also a minimalist - a way of life that encourages freedom,
-					simplicity and disentanglement.
-					This part of me also writes blog, which is available <a href="https://www.minima.blog">here</a>.
-				</p>
+			<img class="avatar avatar-corner" src="/img/logo/icon_owl-simple-red-white.png">
+			<p>I&rsquo;m <strong><em>Yukio Fukuzawa</em></strong>.
+				This is my personal blog dedicated to technology, my academic life,
+				my political point of view, and lots of suicidal thoughts.
+				I'm also a minimalist - a way of life that encourages freedom,
+				simplicity and disentanglement.
+				This part of me also writes blog, which is available <a href="https://www.minima.blog">here</a>.
+			</p>
 		</div>
 
 		<div class="hidden-xs hidden-sm hidden-md col-lg-1"></div>
@@ -215,7 +268,7 @@
 </script>
 
 <script type="text/javascript"
-				src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+				src="https://cdn.mathjax.org/mathjax/latest/MathJax.js">
 </script>
 
 <script type="text/x-mathjax-config">

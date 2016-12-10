@@ -6,6 +6,12 @@ body {
 	padding: 50px 0 70px;
 	line-height: 1.65em;
 	color: #222222;
+	text-align: justify;
+	-webkit-hyphens: auto;
+	-moz-hyphens: auto;
+	-ms-hyphens: auto;
+	-o-hyphens: auto;
+	hyphens: auto;
 }
 
 .body-wrapper {
@@ -47,13 +53,25 @@ a.badge:hover {
 	font-weight: bold;
 }
 
-.col-md-4.other-posts .feature-image {
-	padding: 0;
+.feature-image:hover {
+	filter: grayscale(100%) url(#monochrome);
+	-webkit-filter: grayscale(100%) url(#monochrome);
+	-moz-filter: grayscale(100%) url(#monochrome);
+	filter: grayscale(100%) url(#monochrome);
+	filter: gray url(#monochrome);
+	-webkit-filter: grayscale(1) url(#monochrome);
 }
 
-.recent-posts, .recent-publication {
-	margin-top: 20px;
-	padding-top: 20px;
+.feature-image {
+	filter: none;
+	-webkit-filter: none;
+	-moz-filter: none;
+	filter: none;
+	-webkit-filter: none;
+}
+
+.col-md-4.other-posts .feature-image {
+	padding: 0;
 }
 
 .other-posts .feature-image img {
@@ -61,7 +79,7 @@ a.badge:hover {
 }
 
 .other-posts .other-post {
-	margin-bottom: 1.65em;
+	margin-bottom: 1em;
 }
 
 .other-post.row {
@@ -95,6 +113,14 @@ a.badge:hover {
 	margin-bottom: 0;
 	line-height: 1em;
 	font-size: .8em;
+}
+
+.search-bar-top {
+	margin-top: 50px;
+}
+
+.search-bar-bottom {
+	margin-top: 20px;
 }
 
 .recent-publication .icon {
@@ -244,6 +270,13 @@ h2 {
 	margin-right: 10px;
 }
 
+.feature-image.left-inline {
+	display: inline-block;
+	width: 30%;
+	float: left;
+	margin-right: 1em;
+}
+
 /* Small Devices, Tablets */
 @media only screen and (min-width : 768px) {
 	.avatar-corner {
@@ -257,6 +290,8 @@ h2 {
 	padding-top:6px;
 }
 
+
+
 .sidebar {
 	margin-top: 20px;
 }
@@ -266,10 +301,7 @@ h5, h6, .h5, .h6 {
 	margin-bottom: 0;
 }
 
-.continue-reading {
-	position: relative;
-	top:-5px;
-	display: block;
+.see-more {
 	text-align:center;
 }
 
@@ -280,8 +312,35 @@ h5, h6, .h5, .h6 {
 /* =Footer
 -----------------------------------------------------------------------------*/
 
-.dateblock {
+.citation-doi {
+	text-align: justify;
+	padding: 0;
+}
+
+.citation-doi .citation {
 	text-align: right;
+}
+
+.citation-doi .doi {
+	text-align: left;
+}
+
+.citation-doi .download {
+	text-align: right;
+}
+
+.unpublished-warning {
+	padding-top: 1em;
+}
+
+@media only screen and (min-width : 768px) {
+	.citation-doi .doi {
+		text-align: right;
+	}
+
+	.citation-doi {
+		text-align: right;
+	}
 }
 
 /* =Footer
@@ -359,8 +418,8 @@ code.has-jax {
 .latex sup {
 	text-transform: uppercase;
 	letter-spacing: 1px;
-	font-size: 0.85em;
-	vertical-align: 0.15em;
+	font-size: 0.7em;
+	vertical-align: 0.28em;
 	margin-left: -0.36em;
 	margin-right: -0.15em;
 	top: 0;
@@ -426,6 +485,13 @@ blockquote {
 	border-color: #c33;
 }
 
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:hover,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>li.active>a,
 .navbar-default .navbar-nav>li>a:hover,
 .navbar-default .navbar-nav>li>a:focus {
 	background-color: #ff4136;

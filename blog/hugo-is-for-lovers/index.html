@@ -23,8 +23,9 @@
 	
 	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/styles/github.min.css">
 
-	<link rel="stylesheet" href="/css/custom.css?version=3"/>
+	<link rel="stylesheet" href="/css/custom.css?version=5"/>
 </head>
+
 
 
 <body>
@@ -44,24 +45,55 @@
 			<a class="navbar-brand" href="http://www.ukio.info/"><img src="/img/logo/icon_owl-simple-white-transparent.png">Yukio Fukuzawa</a>
 		</div>
 		<div id="navbar" class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
+			<ul class="nav navbar-nav nav-pill">
+				<li class=" inactive "><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+				<li class="dropdown  active ">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-wordpress" aria-hidden="true"></i> Blog
+						<span class="caret"></span>
+					</a>
+					<ul class="dropdown-menu">
+						<li ><a href="/blog"><i class="fa fa-globe" aria-hidden="true"></i> All posts</a></li>
+						<li class="disabled small"><a href="#"><i class="fa fa-desktop" aria-hidden="true"></i> Computer stuff</a></li>
+						<li class="disabled small"><a href="#"><i class="fa fa-book" aria-hidden="true"></i> Academia</a></li>
+						<li><a href="https://www.minima.blog"><i class="fa fa-leaf" aria-hidden="true"></i> Minima</a></li>
+
+						<li role="separator" class="divider"></li>
+						<li class="dropdown-header">NSFSJW</li>
+						<li class="disabled"><a href="#"><i class="fa fa-university" aria-hidden="true"></i> Politics</a></li>
+					</ul>
+				</li>
+				<li class=" inactive ">
+					<a href="/publications"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Publications</a>
+				</li>
 				
-				<li><a href="/blog">Blog</a></li>
-				
-				<li><a href="/publications">Publications</a></li>
-				
-				<li><a href="#about">About</a></li>
+				<li><a href="#about"><i class="fa fa-info-circle" aria-hidden="true"></i> About</a></li>
 			</ul>
 		</div>
 	</div>
 </nav>
+
+<svg class="defs-only" style="display: none;">
+	<filter id="monochrome" color-interpolation-filters="sRGB"
+					x="0" y="0" height="100%" width="100%">
+		<feColorMatrix type="matrix"
+									 values="
+									 1 0 0 0  .5
+                   1 0 0 0  0
+                   1 0 0 0  0
+                   0 0 0 1  0" />
+	</filter>
+</svg>
 
 <div class="container body-wrapper">
 	<div class="row">
 		
 		<div class="col-md-9" id="blog-post">
 			<h1>Hugo is for lovers</h1>
-			<p class="text-muted text-uppercase mb-small text-right">August 3, 2015</p>
+			<p class="text-muted text-uppercase mb-small text-right">
+				
+				August 3, 2015
+			</p>
 			<div id="post-content">
 				
 
@@ -185,21 +217,21 @@ Having nearly instant feedback enables you to have your creativity flow without 
 			
 			<div class="panel panel-default sidebar-menu">
 
-    <div class="panel-heading">
-        <h3 class="panel-title">Search</h3>
-    </div>
+	<div class="panel-heading">
+		<h3 class="panel-title">Search</h3>
+	</div>
 
-    <div class="panel-body">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
-            <div class="input-group">
-                <input type="search" name="q" results="0" class="form-control" placeholder="Search">
-                <input type="hidden" name="q" value="site:http://www.ukio.info/">
-                <span class="input-group-btn">
-                    <button type="submit" class="btn btn-danger"><i class="fa fa-search"></i></button>
-                </span>
-            </div>
-        </form>
-    </div>
+	<div class="panel-body">
+		<form action="//google.com/search" method="get" accept-charset="UTF-8" role="search">
+			<div class="input-group">
+				<input type="search" name="q" results="0" class="form-control" placeholder="Search">
+				<input type="hidden" name="q" value="site:http://www.ukio.info/">
+				<span class="input-group-btn">
+					<button type="submit" class="btn btn-danger"><i class="fa fa-search"></i></button>
+				</span>
+			</div>
+		</form>
+	</div>
 </div>
 
 
@@ -302,14 +334,14 @@ Having nearly instant feedback enables you to have your creativity flow without 
 	<div class="row">
 		<div class="col-sm-6 col-md-5 col-lg-4">
 			<h3><a id="about">About me</a></h3>
-				<img class="avatar avatar-corner" src="/img/logo/icon_owl-simple-red-white.png">
-				<p>I&rsquo;m <em>Yukio Fukuzawa</em>.
-					This is my personal blog dedicated to technology, my academic life,
-					my political point of view, and lots of suicidal thoughts.
-					I'm also a minimalist - a way of life that encourages freedom,
-					simplicity and disentanglement.
-					This part of me also writes blog, which is available <a href="https://www.minima.blog">here</a>.
-				</p>
+			<img class="avatar avatar-corner" src="/img/logo/icon_owl-simple-red-white.png">
+			<p>I&rsquo;m <strong><em>Yukio Fukuzawa</em></strong>.
+				This is my personal blog dedicated to technology, my academic life,
+				my political point of view, and lots of suicidal thoughts.
+				I'm also a minimalist - a way of life that encourages freedom,
+				simplicity and disentanglement.
+				This part of me also writes blog, which is available <a href="https://www.minima.blog">here</a>.
+			</p>
 		</div>
 
 		<div class="hidden-xs hidden-sm hidden-md col-lg-1"></div>
@@ -395,7 +427,7 @@ Having nearly instant feedback enables you to have your creativity flow without 
 </script>
 
 <script type="text/javascript"
-				src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+				src="https://cdn.mathjax.org/mathjax/latest/MathJax.js">
 </script>
 
 <script type="text/x-mathjax-config">
