@@ -240,9 +240,21 @@ h2 {
 
 .avatar-corner {
 	float: left;
-	width: 30%;
-	max-width: 80px;
+	width: 80px;
 	margin-right: 10px;
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+	.avatar-corner {
+		width: 100px;
+	}
+}
+
+.whatisthis .fa {
+	font-size:80%;
+	color:#b24;
+	padding-top:6px;
 }
 
 .sidebar {
@@ -395,6 +407,8 @@ pre {
 
 code {
 	font-size: .8em;
+	color: #000;
+	background-color: #eee;
 }
 
 blockquote {
