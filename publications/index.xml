@@ -41,14 +41,23 @@
     
  
     <item>
-      <title>First Degree Entailment, Symmetry and Paradox</title>
-      <link>http://www.ukio.info/publications/fde-symmetry-paradox/</link>
-      <pubDate>Fri, 14 Oct 2016 00:00:00 UTC</pubDate>
+      <title>Traffic Sign Recognition system on Android devices</title>
+      <link>http://www.ukio.info/publications/thesis2013/</link>
+      <pubDate>Wed, 20 Nov 2013 00:00:00 UTC</pubDate>
       
-      <guid>http://www.ukio.info/publications/fde-symmetry-paradox/</guid>
-      <description>&lt;![CDATA[&lt;p&gt;Here is a puzzle, which I learned from Terence Parsons in his paper “True Contradictions”. First Degree Entailment (FDE) is a logic which allows for truth value gaps as well as truth value gluts. If you are agnostic between assigning paradoxical sentences gaps and gluts (and there seems to be no very good reason to prefer gaps over gluts or gluts over gaps if you are happy with FDE), then this looks no different, in effect, from assigning them a gap value? After all, on both views you end up with a theory that doesn&amp;rsquo;t commit you to the paradoxical sentence or its negation. How is the FDE theory any different from the theory with gaps alone?&lt;/p&gt;
-
-&lt;p&gt;In this paper, I will present a clear answer to this puzzle&amp;mdash;an answer that explains how being agnostic between gaps and gluts is a genuinely different position than admitting gaps alone, by using the formal notion of a bi-theory, and showing that while such positions might agree on what is to be accepted, they differ on what is to be rejected.&lt;/p&gt;
+      <guid>http://www.ukio.info/publications/thesis2013/</guid>
+      <description>&lt;![CDATA[&lt;p&gt;This project implements on an Android device a Traﬃc Sign Recognition(TSR) system capable of recognising 85 New Zealand traﬃc signs with variouscolours and shapes. I ﬁnd it possible to have such system running almost realtime on medium-class Android devices by having the core processing modulewritten in native code, interacting with the user interface via JNI calls. Dif-ferent techniques are used to extract sign candidates from raw images beforethey are classiﬁed to the correct class. The ﬁrst technique uses a colour ﬁlteroperating on either HSV or RGB colour space to ﬁlter out non-sign pixelsand the sign detector is applied on the remaining part of the images. Thesecond technique applies the detector on two consecutive raw images withoutcolour-ﬁltering. Sign detector is a AdaBoost classiﬁer using Linear BinaryPattern (LBP) to extract features. Products of sign detector are called ”signcandidates” and recognised by a back propagating neural network. This reportﬁnds the colour-ﬁltering technique with the ﬁltering threshold carefully tunedoverperforms the cascade detecting technique, but the latter is less likely tomiss a sign in diﬀerent lighting conditions.&lt;/p&gt;
+]]></description>
+    </item>
+    
+ 
+    <item>
+      <title>q-State Potts model -Theory and simulation</title>
+      <link>http://www.ukio.info/publications/q-state-potts-model/</link>
+      <pubDate>Sun, 20 Oct 2013 00:00:00 UTC</pubDate>
+      
+      <guid>http://www.ukio.info/publications/q-state-potts-model/</guid>
+      <description>&lt;![CDATA[&lt;p&gt;This paper reports a studies into ferromagnetic (or likelihood preferential) Potts model, its statistical mechanics meaning, and propose a simulation tool to simulate the models with given sizes and number of states (q) using Monte-Carlo method. Simulation performance is also discussed.&lt;/p&gt;
 ]]></description>
     </item>
     

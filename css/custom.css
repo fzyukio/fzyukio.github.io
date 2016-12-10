@@ -9,11 +9,7 @@ body {
 }
 
 .body-wrapper {
-	min-height: calc(100vh - 50px - 450px);
-}
-
-footer {
-	background-color: #faf8f8;
+	min-height: calc(100vh - 50px - 380px);
 }
 
 p,li {
@@ -155,14 +151,25 @@ a.badge:hover {
 .navbar {
 	background-color: #b33;
 	margin-bottom: 0;
+	height: 55px;
 }
 
 .navbar .navbar-brand {
 	color: #fff;
+	padding-top: 10px;
+}
+
+.navbar .navbar-brand img{
+	width: 35px;
+	display: inline-block;
 }
 
 .navbar .navbar-nav > li > a {
 	color: #ecc;
+}
+
+.navbar .navbar-nav > li .active {
+	color: #fff;
 }
 
 form, input[type="search"], select[multiple="multiple"] {
@@ -212,12 +219,6 @@ nav {
 	font-family: 'Alegreya SC', serif;
 }
 
-hr {
-	border-top: 1px solid #ecc;
-	margin-top: 5ex;
-	margin-bottom: 5ex;
-}
-
 .separator {
 	border-top: 5px solid #ecc;
 }
@@ -234,11 +235,14 @@ h2 {
 	-webkit-border-radius: 50em;
 	-moz-border-radius: 50em;
 	border-radius: 50em;
+	width: 100%;
 }
 
-.image-left {
+.avatar-corner {
 	float: left;
-	margin: 0 1em 1em 0;
+	width: 30%;
+	max-width: 80px;
+	margin-right: 10px;
 }
 
 .sidebar {
@@ -250,6 +254,17 @@ h5, h6, .h5, .h6 {
 	margin-bottom: 0;
 }
 
+.continue-reading {
+	position: relative;
+	top:-5px;
+	display: block;
+	text-align:center;
+}
+
+.feature-post {
+	padding-bottom: 1em;
+}
+
 /* =Footer
 -----------------------------------------------------------------------------*/
 
@@ -259,36 +274,44 @@ h5, h6, .h5, .h6 {
 
 /* =Footer
 -----------------------------------------------------------------------------*/
-#footer {
+footer {
 	color: #ecc;
-	margin-top: 3ex;
-	padding-bottom: 20px;
+	margin-top: 0;
 	font-size: .9em;
-	padding-top: 1em;
-	background-color: #b33;
 	overflow: hidden;
-	border-top: 3px solid #b24;
+	border: 0;
 }
 
-#footer a {
+footer .copyright {
+	padding-bottom: 10px;
+	padding-top: 10px;
+	background-color: #b33;
+}
+
+footer .copyright.copyright-sm {
+	padding-bottom: 1px;
+	padding-top: 1px;
+}
+
+footer a {
 	color: #fff;
 }
 
-#footer section {
+footer .copyright {
 	float: none;
 	text-align: center;
 }
 
-#footer nav {
+footer nav {
 	float: right;
 }
 
-#footer nav ul {
+footer nav ul {
 	list-style: none;
 	margin: 0;
 }
 
-#footer nav ul li {
+footer nav ul li {
 	float: left;
 	margin-left: 2em;
 }

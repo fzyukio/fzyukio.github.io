@@ -22,11 +22,6 @@
   </url>
   
   <url>
-    <loc>http://www.ukio.info/publications/fde-symmetry-paradox/</loc>
-    <lastmod>2016-10-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>http://www.ukio.info/blog/migrate-from-jekyll/</loc>
     <lastmod>2015-10-10T13:07:31+02:00</lastmod>
   </url>
@@ -49,6 +44,16 @@
   <url>
     <loc>http://www.ukio.info/blog/creating-a-new-theme/</loc>
     <lastmod>2015-06-24T13:50:46+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.ukio.info/publications/thesis2013/</loc>
+    <lastmod>2013-11-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://www.ukio.info/publications/q-state-potts-model/</loc>
+    <lastmod>2013-10-20T00:00:00+00:00</lastmod>
   </url>
   
 </urlset>
