@@ -20,9 +20,9 @@
 	  </itunes:category>
 	  <itunes:keywords>phd, latex, yukio fukuzawa, massey, new zealand</itunes:keywords>
 	  <itunes:explicit>no</itunes:explicit>
-	  <itunes:image href="http://www.ukio.info//img/avatar2.jpg" />
+	  <itunes:image href="https://www.ukio.info//img/avatar2.jpg" />
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://www.ukio.info/tags/python/index.xml</link>
+    <link>https://www.ukio.info/tags/python/index.xml</link>
     <language>en-us</language>
     
     
@@ -31,10 +31,10 @@
  
     <item>
       <title>From Mendeley to LaTeX: a seamless integration</title>
-      <link>http://www.ukio.info/blog/mendeley-to-tex/</link>
+      <link>https://www.ukio.info/blog/mendeley-to-tex/</link>
       <pubDate>Sat, 10 Dec 2016 00:01:00 &#43;1200</pubDate>
       
-      <guid>http://www.ukio.info/blog/mendeley-to-tex/</guid>
+      <guid>https://www.ukio.info/blog/mendeley-to-tex/</guid>
       <description>&lt;![CDATA[&lt;p&gt;Mendeley is the only reference manager, as I know, capable of updating a &lt;code&gt;bib&lt;/code&gt; file on the fly. That is: as soon as you import a new reference or make a change to an existing reference, it will export the updated version of the library to the &lt;code&gt;library.bib&lt;/code&gt; file in a predefined folder. This is especially nice if you&amp;rsquo;re writing a paper and constantly searching for new literature. If you&amp;rsquo;re only bothering with writing one paper, then this might be enough. When you write the second paper, simply instruct Mendeley to write to a different file. However, if you&amp;rsquo;re writing two or more scientific documents using the same set of references, then you will need something smarter. What&amp;rsquo;s more problematic is that Mendeley dumps everything inside the references, including location of the PDF and any notes you make. This might cause &lt;span class=&#34;latex&#34;&gt;L&lt;sup&gt;a&lt;/sup&gt;T&lt;sub&gt;e&lt;/sub&gt;X&lt;/span&gt; to fail to compile.
 &lt;/p&gt;
 
@@ -53,11 +53,11 @@
 
 &lt;p&gt;This step is simple: go to Mendeley&amp;rsquo;s Preferences (keyboard shortcut &lt;kbd&gt;⌘&lt;/kbd&gt;+&lt;kbd&gt;,&lt;/kbd&gt;), go to tab BibTeX and select the following options:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.ukio.info/img/banners/mendeley-to-tex-2.png&#34; width=&#34;100%&#34; style=&#34;max-width: 500px;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.ukio.info/img/banners/mendeley-to-tex-2.png&#34; width=&#34;100%&#34; style=&#34;max-width: 500px;&#34;&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;clean-up-library-bib&#34;&gt;Clean up library.bib&lt;/h2&gt;
 
-&lt;p&gt;I have written a small Python code that does this automatically. You can download it &lt;a href=&#34;http://www.ukio.info/files/cleanbib.py&#34;&gt;&lt;i class=&#34;fa fa-download&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt; here&lt;/a&gt;. Let&amp;rsquo;s say you save it to &lt;code&gt;/path/to/tex-projects/&lt;/code&gt;. I currently hardcode it to remove &lt;code&gt;annote&lt;/code&gt;, &lt;code&gt;annotate&lt;/code&gt;, &lt;code&gt;abstract&lt;/code&gt;, &lt;code&gt;mendeley-groups&lt;/code&gt;, &lt;code&gt;keywords&lt;/code&gt;, &lt;code&gt;file&lt;/code&gt;. These fields are quite problematic because they might be long and contain special character. I also make it comment out &lt;code&gt;issn&lt;/code&gt;, &lt;code&gt;isbn&lt;/code&gt;, &lt;code&gt;doi&lt;/code&gt;, just in case I want to have a quick look. All the other fields are kept intact. The utility takes two arguments, as following:&lt;/p&gt;
+&lt;p&gt;I have written a small Python code that does this automatically. You can download it &lt;a href=&#34;https://www.ukio.info/files/cleanbib.py&#34;&gt;&lt;i class=&#34;fa fa-download&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt; here&lt;/a&gt;. Let&amp;rsquo;s say you save it to &lt;code&gt;/path/to/tex-projects/&lt;/code&gt;. I currently hardcode it to remove &lt;code&gt;annote&lt;/code&gt;, &lt;code&gt;annotate&lt;/code&gt;, &lt;code&gt;abstract&lt;/code&gt;, &lt;code&gt;mendeley-groups&lt;/code&gt;, &lt;code&gt;keywords&lt;/code&gt;, &lt;code&gt;file&lt;/code&gt;. These fields are quite problematic because they might be long and contain special character. I also make it comment out &lt;code&gt;issn&lt;/code&gt;, &lt;code&gt;isbn&lt;/code&gt;, &lt;code&gt;doi&lt;/code&gt;, just in case I want to have a quick look. All the other fields are kept intact. The utility takes two arguments, as following:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;python&#34;&gt;
 cleanbib.py --file /path/to/tex-projects/library.bib --out /path/to/tex-projects/cleaned.bib

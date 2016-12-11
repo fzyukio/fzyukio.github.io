@@ -20,9 +20,9 @@
 	  </itunes:category>
 	  <itunes:keywords>phd, latex, yukio fukuzawa, massey, new zealand</itunes:keywords>
 	  <itunes:explicit>no</itunes:explicit>
-	  <itunes:image href="http://www.ukio.info//img/avatar2.jpg" />
+	  <itunes:image href="https://www.ukio.info//img/avatar2.jpg" />
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://www.ukio.info/tags/latex/index.xml</link>
+    <link>https://www.ukio.info/tags/latex/index.xml</link>
     <language>en-us</language>
     
     
@@ -31,10 +31,10 @@
  
     <item>
       <title>From Mendeley to LaTeX: a seamless integration</title>
-      <link>http://www.ukio.info/blog/mendeley-to-tex/</link>
+      <link>https://www.ukio.info/blog/mendeley-to-tex/</link>
       <pubDate>Sat, 10 Dec 2016 00:01:00 &#43;1200</pubDate>
       
-      <guid>http://www.ukio.info/blog/mendeley-to-tex/</guid>
+      <guid>https://www.ukio.info/blog/mendeley-to-tex/</guid>
       <description>&lt;![CDATA[&lt;p&gt;Mendeley is the only reference manager, as I know, capable of updating a &lt;code&gt;bib&lt;/code&gt; file on the fly. That is: as soon as you import a new reference or make a change to an existing reference, it will export the updated version of the library to the &lt;code&gt;library.bib&lt;/code&gt; file in a predefined folder. This is especially nice if you&amp;rsquo;re writing a paper and constantly searching for new literature. If you&amp;rsquo;re only bothering with writing one paper, then this might be enough. When you write the second paper, simply instruct Mendeley to write to a different file. However, if you&amp;rsquo;re writing two or more scientific documents using the same set of references, then you will need something smarter. What&amp;rsquo;s more problematic is that Mendeley dumps everything inside the references, including location of the PDF and any notes you make. This might cause &lt;span class=&#34;latex&#34;&gt;L&lt;sup&gt;a&lt;/sup&gt;T&lt;sub&gt;e&lt;/sub&gt;X&lt;/span&gt; to fail to compile.
 &lt;/p&gt;
 
@@ -53,11 +53,11 @@
 
 &lt;p&gt;This step is simple: go to Mendeley&amp;rsquo;s Preferences (keyboard shortcut &lt;kbd&gt;⌘&lt;/kbd&gt;+&lt;kbd&gt;,&lt;/kbd&gt;), go to tab BibTeX and select the following options:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.ukio.info/img/banners/mendeley-to-tex-2.png&#34; width=&#34;100%&#34; style=&#34;max-width: 500px;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.ukio.info/img/banners/mendeley-to-tex-2.png&#34; width=&#34;100%&#34; style=&#34;max-width: 500px;&#34;&gt;&lt;/p&gt;
 
 &lt;h2 id=&#34;clean-up-library-bib&#34;&gt;Clean up library.bib&lt;/h2&gt;
 
-&lt;p&gt;I have written a small Python code that does this automatically. You can download it &lt;a href=&#34;http://www.ukio.info/files/cleanbib.py&#34;&gt;&lt;i class=&#34;fa fa-download&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt; here&lt;/a&gt;. Let&amp;rsquo;s say you save it to &lt;code&gt;/path/to/tex-projects/&lt;/code&gt;. I currently hardcode it to remove &lt;code&gt;annote&lt;/code&gt;, &lt;code&gt;annotate&lt;/code&gt;, &lt;code&gt;abstract&lt;/code&gt;, &lt;code&gt;mendeley-groups&lt;/code&gt;, &lt;code&gt;keywords&lt;/code&gt;, &lt;code&gt;file&lt;/code&gt;. These fields are quite problematic because they might be long and contain special character. I also make it comment out &lt;code&gt;issn&lt;/code&gt;, &lt;code&gt;isbn&lt;/code&gt;, &lt;code&gt;doi&lt;/code&gt;, just in case I want to have a quick look. All the other fields are kept intact. The utility takes two arguments, as following:&lt;/p&gt;
+&lt;p&gt;I have written a small Python code that does this automatically. You can download it &lt;a href=&#34;https://www.ukio.info/files/cleanbib.py&#34;&gt;&lt;i class=&#34;fa fa-download&#34; aria-hidden=&#34;true&#34;&gt;&lt;/i&gt; here&lt;/a&gt;. Let&amp;rsquo;s say you save it to &lt;code&gt;/path/to/tex-projects/&lt;/code&gt;. I currently hardcode it to remove &lt;code&gt;annote&lt;/code&gt;, &lt;code&gt;annotate&lt;/code&gt;, &lt;code&gt;abstract&lt;/code&gt;, &lt;code&gt;mendeley-groups&lt;/code&gt;, &lt;code&gt;keywords&lt;/code&gt;, &lt;code&gt;file&lt;/code&gt;. These fields are quite problematic because they might be long and contain special character. I also make it comment out &lt;code&gt;issn&lt;/code&gt;, &lt;code&gt;isbn&lt;/code&gt;, &lt;code&gt;doi&lt;/code&gt;, just in case I want to have a quick look. All the other fields are kept intact. The utility takes two arguments, as following:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;python&#34;&gt;
 cleanbib.py --file /path/to/tex-projects/library.bib --out /path/to/tex-projects/cleaned.bib
@@ -104,10 +104,10 @@ fswatch -o /path/to/tex-projects/library.bib | xargs -n1 /path/to/tex-projects/c
  
     <item>
       <title>High quality graphics for your Latex document: The Matlab route</title>
-      <link>http://www.ukio.info/blog/matlab-to-latex/</link>
+      <link>https://www.ukio.info/blog/matlab-to-latex/</link>
       <pubDate>Thu, 08 Dec 2016 14:40:31 &#43;1200</pubDate>
       
-      <guid>http://www.ukio.info/blog/matlab-to-latex/</guid>
+      <guid>https://www.ukio.info/blog/matlab-to-latex/</guid>
       <description>&lt;![CDATA[&lt;p&gt;You use &lt;span class=&#34;latex&#34;&gt;L&lt;sup&gt;a&lt;/sup&gt;T&lt;sub&gt;e&lt;/sub&gt;X&lt;/span&gt; instead of a WYSIWYG word processing program because they can&amp;rsquo;t cope with the high quality required for publication. But your nice professional looking documents can be ruined because you insert the wrong type of figures. Bitmap figures are easily pixelated because the actual size is not always known beforehand. Exporting figures as PDF to be included sounds like a good idea but you&amp;rsquo;ll quickly notice the problem with the text (e.g. axis label and ticks,&amp;hellip;) which needs to be rendered by Latex to get the correct font and size.&lt;/p&gt;
 
 &lt;p&gt;Hard-core Tex users can find the answer to this problem in Tikz or Pgfplot. Of course figures generated at this level is as good as it gets. I use Tikz picture quite frequently for text-heavy diagrams and simple plots. However, if the figure is moderately complicated or if it&amp;rsquo;s bound to precise data, then generating figures this way quickly becomes unmanageable.
@@ -162,7 +162,7 @@ DIR_INKSC = &#39;/Applications/Inkscape.app/Contents/MacOS/inkscape&#39;;
 
 &lt;p&gt;You can seriously go nuts! Bring it on any sort of plot you can think of. The routine eventually call Matlab&amp;rsquo;s &lt;code&gt;saveas()&lt;/code&gt; so as long as the MathWork guys don&amp;rsquo;t mess it up, any plot should be savable. It&amp;rsquo;s also possible to use Latex as the renderer for your strings.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.ukio.info/img/banners/latex-plot-2.png&#34; width=&#34;100%&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.ukio.info/img/banners/latex-plot-2.png&#34; width=&#34;100%&#34;&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;2-export-with-plot2latex&#34;&gt;2. Export with Plot2Latex&lt;/h3&gt;
 
@@ -180,11 +180,11 @@ Plot2LaTeX(gcf, &#39;/path/to/tex/figures/my_figure&#39;)
 
 &lt;p&gt;Open the SVG file with Inkscape. You&amp;rsquo;ll need to get used to a few Inkscape commands but in general it&amp;rsquo;s not that different from other image processing program. You&amp;rsquo;ll need to get rid of several blank layers that span the whole page before you can modify anything. You can get Inkscape to automatically shrink the page to fit the actual figure, removing all white margin. And you can do that by clicking &lt;code&gt;File&lt;/code&gt; -&amp;gt; &lt;code&gt;Document Properties&lt;/code&gt; (Keyboard shortcut:  &lt;kbd class=&#34;is-icon&#34;&gt;⇧⌘D&lt;/kbd&gt;), expand &lt;code&gt;Resize page to content...&lt;/code&gt;, then click on &lt;code&gt;Resize page to drawing or selection&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.ukio.info/img/banners/latex-plot-3.png&#34; width=&#34;100%&#34; style=&#34;max-width: 500px;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.ukio.info/img/banners/latex-plot-3.png&#34; width=&#34;100%&#34; style=&#34;max-width: 500px;&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;Now you can save the changes to &lt;code&gt;.pdf_tex&lt;/code&gt; by selecting &lt;code&gt;File&lt;/code&gt; -&amp;gt; &lt;code&gt;Save as&lt;/code&gt; (Keyboard shortcut:  &lt;kbd class=&#34;is-icon&#34;&gt;⇧⌘S&lt;/kbd&gt;), choose &lt;code&gt;PDF&lt;/code&gt;, select &lt;code&gt;Omit text in PDF and create LaTeX file&lt;/code&gt;. Now you&amp;rsquo;re ready to import the figure into &lt;span class=&#34;latex&#34;&gt;L&lt;sup&gt;a&lt;/sup&gt;T&lt;sub&gt;e&lt;/sub&gt;X&lt;/span&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.ukio.info/img/banners/latex-plot-4.png&#34; width=&#34;100%&#34; style=&#34;max-width: 500px;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.ukio.info/img/banners/latex-plot-4.png&#34; width=&#34;100%&#34; style=&#34;max-width: 500px;&#34;&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;4-import-into-span-class-latex-l-sup-a-sup-t-sub-e-sub-x-span&#34;&gt;4. Import into &lt;span class=&#34;latex&#34;&gt;L&lt;sup&gt;a&lt;/sup&gt;T&lt;sub&gt;e&lt;/sub&gt;X&lt;/span&gt;&lt;/h3&gt;
 
@@ -217,7 +217,7 @@ Plot2LaTeX(gcf, &#39;/path/to/tex/figures/my_figure&#39;)
 
 &lt;h3 id=&#34;result&#34;&gt;Result:&lt;/h3&gt;
 
-&lt;p&gt;&lt;img src=&#34;http://www.ukio.info/img/banners/latex-plot-1.png&#34; width=&#34;100%&#34; style=&#34;max-width: 500px;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://www.ukio.info/img/banners/latex-plot-1.png&#34; width=&#34;100%&#34; style=&#34;max-width: 500px;&#34;&gt;&lt;/p&gt;
 
 &lt;p&gt;You can notice that the figure looks infinitely sharp and the text is typeset using the right font and size.&lt;/p&gt;
 

@@ -20,9 +20,9 @@
 	  </itunes:category>
 	  <itunes:keywords>phd, latex, yukio fukuzawa, massey, new zealand</itunes:keywords>
 	  <itunes:explicit>no</itunes:explicit>
-	  <itunes:image href="http://www.ukio.info//img/avatar2.jpg" />
+	  <itunes:image href="https://www.ukio.info//img/avatar2.jpg" />
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://www.ukio.info/categories/starting/index.xml</link>
+    <link>https://www.ukio.info/categories/starting/index.xml</link>
     <language>en-us</language>
     
     
@@ -31,10 +31,10 @@
  
     <item>
       <title>Creating a new theme</title>
-      <link>http://www.ukio.info/blog/creating-a-new-theme/</link>
+      <link>https://www.ukio.info/blog/creating-a-new-theme/</link>
       <pubDate>Wed, 24 Jun 2015 13:50:46 &#43;0200</pubDate>
       
-      <guid>http://www.ukio.info/blog/creating-a-new-theme/</guid>
+      <guid>https://www.ukio.info/blog/creating-a-new-theme/</guid>
       <description>&lt;![CDATA[
 
 &lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;

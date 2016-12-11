@@ -20,9 +20,9 @@
 	  </itunes:category>
 	  <itunes:keywords>phd, latex, yukio fukuzawa, massey, new zealand</itunes:keywords>
 	  <itunes:explicit>no</itunes:explicit>
-	  <itunes:image href="http://www.ukio.info//img/avatar2.jpg" />
+	  <itunes:image href="https://www.ukio.info//img/avatar2.jpg" />
       <generator uri="https://gohugo.io">Hugo</generator>
-    <link>http://www.ukio.info/tags/programming/index.xml</link>
+    <link>https://www.ukio.info/tags/programming/index.xml</link>
     <language>en-us</language>
     
     
@@ -31,10 +31,10 @@
  
     <item>
       <title>Linked post</title>
-      <link>http://www.ukio.info/blog/linked-post/</link>
+      <link>https://www.ukio.info/blog/linked-post/</link>
       <pubDate>Fri, 02 Oct 2015 21:49:20 &#43;0200</pubDate>
       
-      <guid>http://www.ukio.info/blog/linked-post/</guid>
+      <guid>https://www.ukio.info/blog/linked-post/</guid>
       <description>&lt;![CDATA[&lt;p&gt;I&amp;rsquo;m a linked post in the menu. You can add other posts by adding the following line to the frontmatter:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;menu = &amp;quot;main&amp;quot;
